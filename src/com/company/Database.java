@@ -127,7 +127,7 @@ public class Database {
 
     // Update note in database
     public void updateNote(Note note) {
-        String query = "UPDATE notes SET title = ?, description =?, last_update = CURRENT_TIMESTAMP WHERE id = ?;)";
+        String query = "UPDATE notes SET title = ?, description =?, last_update = CURRENT_TIMESTAMP WHERE id = ?;";
         try {
             PreparedStatement stmt= conn.prepareStatement(query);
             stmt.setString(1, note.getTitle());
@@ -154,7 +154,7 @@ public class Database {
     // Search in database om title-field
     public List<Note> searchDatabaseByTitle (String searchString){
         List<Note> notes = null;
-        String query = "SELECT * FROM notes WHERE title LIKE '%?%';";
+        String query = "SELECT * FROM notes WHERE title LIKE %?%;";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1,searchString);
