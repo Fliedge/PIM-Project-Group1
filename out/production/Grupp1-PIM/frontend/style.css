@@ -1,0 +1,57 @@
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    padding: 0%;
+    margin: 0%;
+  }
+
+header{
+    background-color: #78A4FB;
+    height: 80px;
+}
+
+nav{
+    display: inline-block;
+    height: vh;
+    background-color: #bbbbbb44;
+    padding-bottom: 100%;
+
+    
+}
+
+ul{
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    list-style-type: none;
+}
+
+li{
+    padding-bottom: 10px;
+}
+
+a{
+
+    padding-bottom: 100px;
+
+    color: rgb(122, 122, 122);
+    text-decoration: none;
+    
+
+}
+
+form{
+    display: inline-block;
+}
+
+input{
+    display: inline-block;
+}
+
+#description-input{
+    height: 100px;
+}
+
+h1{
+    
+}
