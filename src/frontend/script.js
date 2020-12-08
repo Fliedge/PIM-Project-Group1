@@ -15,6 +15,7 @@ function submitNote() {
     }
     else {
         alert("Title needs to be added")
+        console.log("Hello")
     }
 }
 
