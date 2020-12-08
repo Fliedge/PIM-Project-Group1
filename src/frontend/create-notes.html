@@ -11,17 +11,18 @@
 <body>
     <header></header>
     <nav>
-        <ul>
-            <a href="index.html">Home</a><br>
-            <a href="create-notes.html">Create note</a><br>
-            <a href="view.html">view</a>
+        <ul id="nav-list">
+            <li><a href="index.html">Home</a><br></li>
+            <li><a href="create-notes.html">Create note</a><br></li>
+            <li><a href="view.html">View</a></li>
         </ul>
     </nav>
 
     <form action="submit">
-        <input type="text" placeholder="Title..." id="title-input"><br>
-        <input type="text" placeholder="Description..." id="description-input">
-        <button class="add-button">Add</button>
+        <h2>Create new note</h2>
+        <li><input type="text" placeholder="Title..." id="title-input"><br></li>
+        <li><input type="text" placeholder="Description..." id="description-input"></li>
+        <button onclick="submitNote()" id="add-button">Add</button>
     </form>
 
     
