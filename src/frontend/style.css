@@ -60,6 +60,7 @@ h2{
     left: 82%;
 }
 
+
 #title-input{
 
 }
@@ -69,3 +70,91 @@ h2{
     height: 200px;
     width: 500px;
 }
+
+
+/* edit-notes */
+#edit-add-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 32px; 
+    font-size: 15px;
+    position: relative;
+    left: 3%;
+}
+
+#save-changes {
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 32px; 
+    font-size: 15px;
+    position: relative;
+    left: 20%;
+    margin: 5px;
+}
+
+
+/* View-notes */
+* { box-sizing: border-box; }
+
+body { 
+  font-family: 'Open Sans', sans-serif;
+  color: #666;
+}
+
+.wrapper {
+	padding: 5px;
+	max-width: 960px;
+	width: 95%;
+	margin: 20px auto;
+}
+
+.columns {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	margin: 5px 0;
+}
+
+.column {
+	flex: 1;
+	border: 1px solid gray;
+	margin: 2px;
+	padding: 10px;
+	&:first-child { margin-left: 0; }
+	&:last-child { margin-right: 0; }
+	
+}
+
+#searchbar{ 
+    margin-left: 15%; 
+    padding:10px; 
+    border-radius: 5px; 
+  } 
+
+#delete-button {
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 32px; 
+    font-size: 15px;
+    position: relative;
+    left: 3%;
+}
+
+#edit-button {
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 32px; 
+    font-size: 15px;
+    position: relative;
+    left: 3%;
+
+}
+
