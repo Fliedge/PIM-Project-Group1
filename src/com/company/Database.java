@@ -22,7 +22,7 @@ public class Database {
     // Get all notes from database
     public List<Note> getNotes(){
         List<Note> notes=null;
-        String query = "SELECT * FROM notes:";
+        String query = "SELECT * FROM notes;";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -34,9 +34,63 @@ public class Database {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-
         return notes;
     }
+
+    // Get all notes from database ordered by title ASC
+    public List<Note> getNotesOrderByTitle(){
+        List<Note> notes=null;
+        String query = "SELECT * FROM notes ORDER BY title;";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+            notes = List.of(notesFromRS);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return notes;
+    }
+
+    // Get all notes from database ordered by lastUpdate (ASC)
+    public List<Note> getNotesOrderByLastupdateAsc(){
+        List<Note> notes=null;
+        String query = "SELECT * FROM notes ORDER BY last_update;";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+            notes = List.of(notesFromRS);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return notes;
+    }
+
+    // Get all notes from database ordered by lastUpdate DESC
+    public List<Note> getNotesOrderByLastupdateDesc(){
+        List<Note> notes=null;
+        String query = "SELECT * FROM notes ORDER BY last_update DESC;";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+            notes = List.of(notesFromRS);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return notes;
+    }
+
 
     // Get one specific note from database by id
     public Note getNoteByID(int id){
@@ -56,6 +110,7 @@ public class Database {
         }
         return note;
     }
+
 
     // Add new note into database
     public void createNote(Note note){
@@ -94,6 +149,25 @@ public class Database {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    // Search in database om title-field
+    public List<Note> searchDatabaseByTitle (String searchString){
+        List<Note> notes = null;
+        String query = "SELECT * FROM notes WHERE title LIKE '%?%';";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1,searchString);
+            ResultSet rs = stmt.executeQuery();
+            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs,Note[].class);
+            notes = List.of(notesFromRS);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return notes;
     }
 }
 
