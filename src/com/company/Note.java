@@ -1,12 +1,13 @@
 package com.company;
 
-import java.text.SimpleDateFormat;
+import java.security.Timestamp;
+
 
 public class Note {
     private int id;
     private String title;
     private String description;
-    private SimpleDateFormat lastUpdate;
+    private String lastUpdate;
 
 
     public Note() {
@@ -17,13 +18,13 @@ public class Note {
         this.description = description;
     }
 
-    public Note(String title, String description, SimpleDateFormat lastUpdate) {
+    public Note(String title, String description, String lastUpdate) {
         this.title = title;
         this.description = description;
         this.lastUpdate = lastUpdate;
     }
 
-    public Note(int id, String title, String description, SimpleDateFormat lastUpdate) {
+    public Note(int id, String title, String description, String lastUpdate) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -54,11 +55,11 @@ public class Note {
         this.description = description;
     }
 
-    public SimpleDateFormat getLastUpdate() {
+    public String getLastUpdate() {
         return lastUpdate;
     }
 
-    public void setLastUpdate(SimpleDateFormat lastUpdate) {
+    public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 

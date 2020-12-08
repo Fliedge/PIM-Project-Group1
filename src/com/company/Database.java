@@ -27,7 +27,7 @@ public class Database {
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
-            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs,Note[].class);
             notes = List.of(notesFromRS);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -58,7 +58,7 @@ public class Database {
     // Get all notes from database ordered by lastUpdate (ASC)
     public List<Note> getNotesOrderByLastupdateAsc(){
         List<Note> notes=null;
-        String query = "SELECT * FROM notes ORDER BY last_update;";
+        String query = "SELECT * FROM notes ORDER BY lastUpdate;";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -76,7 +76,7 @@ public class Database {
     // Get all notes from database ordered by lastUpdate DESC
     public List<Note> getNotesOrderByLastupdateDesc(){
         List<Note> notes=null;
-        String query = "SELECT * FROM notes ORDER BY last_update DESC;";
+        String query = "SELECT * FROM notes ORDER BY lastUpdate DESC;";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -95,13 +95,12 @@ public class Database {
     // Get one specific note from database by id
     public Note getNoteByID(int id){
         Note note = null;
-        String query = "SELECT * FROM notes WHERE id = ?;";
-
+        String query = "SELECT * FROM notes WHERE id = ?";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setInt(1,id);
             ResultSet rs = stmt.executeQuery();
-            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs, Note[].class);
+            Note[] notesFromRS = (Note[]) Utils.readResultSetToObject(rs,Note[].class);
             note = notesFromRS[0];
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -114,7 +113,7 @@ public class Database {
 
     // Add new note into database
     public void createNote(Note note){
-        String query = "INSERT INTO notes (title, description, last_update) VALUES (?,?, CURRENT_TIMESTAMP);";
+        String query = "INSERT INTO notes (title, description, lastUpdate) VALUES (?,?, CURRENT_TIMESTAMP);";
         try {
             PreparedStatement stmt =conn.prepareStatement(query);
             stmt.setString(1, note.getTitle());
@@ -127,7 +126,7 @@ public class Database {
 
     // Update note in database
     public void updateNote(Note note) {
-        String query = "UPDATE notes SET title = ?, description =?, last_update = CURRENT_TIMESTAMP WHERE id = ?;";
+        String query = "UPDATE notes SET title = ?, description =?, lastUpdate = CURRENT_TIMESTAMP WHERE id = ?;";
         try {
             PreparedStatement stmt= conn.prepareStatement(query);
             stmt.setString(1, note.getTitle());
