@@ -50,9 +50,6 @@ public class JExpress {
             response.json(notes);
         });
 
-
-
-
         app.post("/rest/notes", (request, response) -> {
         Note note = (Note) request.getBody(Note.class);
 
