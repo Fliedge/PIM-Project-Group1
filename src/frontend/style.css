@@ -1,34 +1,40 @@
 *{
-    box-sizing: border-box;
-    scroll-behavior: smooth;
     padding: 0%;
     margin: 0%;
     font-family: 'Roboto', sans-serif;
-
-  }
+}
 
 header{
     background-color: #A8BAB7;
-    height: 80px;
+    height: 100px;
 }
+
+li{
+    list-style-type: none;
+}
+
+body { 
+    font-family: 'Roboto', sans-serif;
+    color: #666;
+}
+
+/* Nav-bar */
 
 nav{
     position: absolute;
     display: inline-block;
     background-color: #bbbbbb44;
     padding-bottom: 100%;
-    padding-top: 1%;
 }
 
-ul{
-    padding-top: 20px;
+#nav-ul{
+    padding-top: 33px;
     padding-left: 20px;
     padding-right: 20px;
 }
 
-li{
-    list-style-type: none;
-
+.nav-list{
+    font-size: large;
     padding-bottom: 14px;
 }
 
@@ -36,157 +42,137 @@ a{
     color: #676E63;
     text-decoration: none;
 }
+a:hover{
+    text-shadow: -.25px -.25px 0 black, 
+    .25px .25px black;
+}
+a.menu_links {
+    cursor: pointer;
+}
+
+
+/* home-page */
+
+.home-wrapper {
+
+    width: 600px;
+
+    position: relative;
+    left: 202px;
+    top: 57px;
+
+}
+
+
+.home-note-columns{
+
+    flex: 1;
+    border: 1px solid gray;
+    /* margin: 2px; */
+    padding: 10px;
+
+    display: flex;
+    flex-flow: row wrap;
+    margin: 5px 0;
+    margin-bottom: 9px;
+
+}
+
+.home-note-columns:hover{
+background-color: #bbbbbb14;
+}
+
+
+
+
+
+
+
+#add-files-button{
+background-color: #b4bab181; 
+border: none; 
+border-radius: 3px; 
+color: #333;
+padding: 7px 26px;
+font-size: 15px;
+}
+
+#add-image-button:hover{
+background-color: #b4bab1d2; 
+cursor: pointer;
+}
+
+#add-files-button:hover{
+background-color: #b4bab1d2; 
+cursor: pointer;
+}
+
+#add-image-button{
+background-color: #b4bab181; 
+border: none; 
+border-radius: 3px; 
+color: #333;
+padding: 7px 15px; 
+font-size: 15px;
+position: absolute;
+left: -1px;
+}
+
+span{
+cursor: pointer;
+}
+
+span:hover{
+background-color: black;
+
+}
+
 
 form{
-    display: inline-block;
-    position: relative;
-    left: 14%;
-    top: 30px;
+display: inline-block;
+position: relative;
+left: 202px;
+top: 57px;
 }
 
 h2{
-    color: #636E6C;
-    padding-bottom: 7px;
+color: #636E6C;
+padding-bottom: 7px;
+}
+
+textarea{
+width: 500px;
 }
 
 #add-button{
-    background-color: #b4bab181; 
-    border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 32px; 
-    font-size: 15px;
-    position: relative;
-    left: 82%;
+background-color: #b4bab181; 
+border: none; 
+border-radius: 3px; 
+color: #333;
+padding: 7px 32px; 
+font-size: 15px;
+position: relative;
+left: 82%;
 }
 
+#add-button:hover{
+background-color: #b4bab1d2; 
+cursor: pointer;
+}
 
 #title-input{
 
+padding:5px; 
+width: 300px;
 }
 
 #description-input{
-    position: relative;
-    height: 200px;
-    width: 500px;
+
+size: fixed;
+position: relative;
+height: 300px;
+width: 600px;
+padding:5px; 
 }
-
-
-/* edit-notes */
-#edit-add-button{
-    background-color: #b4bab181; 
-    border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 32px; 
-    font-size: 15px;
-    position: relative;
-    left: 3%;
-}
-
-#save-changes {
-    background-color: #b4bab181; 
-    border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 32px; 
-    font-size: 15px;
-    position: relative;
-    left: 20%;
-    margin: 5px;
-}
-
-
-/* View-notes */
-* { box-sizing: border-box; }
-
-body { 
-  font-family: 'Open Sans', sans-serif;
-  color: #666;
-}
-
-.wrapper {
-	padding: 5px;
-	max-width: 960px;
-	width: 95%;
-	margin: 20px auto;
-}
-
-.columns {
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: center;
-	margin: 5px 0;
-}
-
-.column {
-	flex: 1;
-	border: 1px solid gray;
-	margin: 2px;
-	padding: 10px;	
-}
-
-#searchbar{ 
-    margin-left: 15%; 
-    padding:10px; 
-    border-radius: 5px; 
-  } 
-
-#delete-button {
-    background-color: #b4bab181; 
-    border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 32px; 
-    font-size: 15px;
-    position: relative;
-    left: 60%;
-}
-
-#edit-button {
-    background-color: #b4bab181; 
-    border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 32px; 
-    font-size: 15px;
-    position: relative;
-    left: 70%;
-
-
-}
-
-
-
-/* Home Page */
-* { box-sizing: border-box; }
-
-body { 
-  font-family: 'Open Sans', sans-serif;
-  color: #666;
-}
-
-.home-wrapper {
-	padding: 5px;
-	max-width: 960px;
-	width: 95%;
-	margin: 20px auto;
-}
-
-.home-columns {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
-	margin: 5px 0;
-}
-
-.home-column {
-	flex: 1;
-	border: 1px solid gray;
-	margin: 2px;
-	padding: 10px;	
-}
-
-
 
 
