@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="sorting.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
@@ -20,6 +21,12 @@
     <article class="home-wrapper">
 
         <h1> My Latest Notes </h1>
+        <select id="sort-choice" onchange="sortingChoices(this)">
+            <option value="">Choose method for sorting</option>
+            <option value="1">Sort by title</option>
+            <option value="2">Sort by date, earliast first</option>
+            <option value="3">Sort by date, latest first</option>
+        </select>
         <div id="home-list">
         </div>
     </article>
