@@ -1,28 +1,32 @@
-let notesSortedByTitle = [];
-let notesSortedByDateAsc = [];
-let notesSortedByDateDesc = [];
+let sortedNotes = [];
 
 async function getAllNotesDbSortedByTitle() {
 
     let result = await fetch("/rest/getNotesOrderByTitle");
-    notesSortedByTitle = await result.json();
+    sortedNotes = await result.json();
     homepageList(notesSortedByTitle);
+
+    displayList();
 
 }
 
 async function getAllNotesDbSortedByDateAsc() {
 
     let result = await fetch("/rest/getNotesOrderByLastUpdateAsc");
-    notesSortedByDateAsc = await result.json();
+    sortedNotes = await result.json();
     homepageList(notesSortedByDateAsc);
+
+    displayList();
 
 }
 
 async function getAllNotesDbSortedByDateDesc() {
 
     let result = await fetch("/rest/getNotesOrderByLastUpdateDesc");
-    notesSortedByDateDesc = await result.json();
+    sortedNotes = await result.json();
     homepageList(notesSortedByDateDesc);
+    
+    displayList();
 
 }
 
@@ -42,6 +46,7 @@ function sortingChoices(menu) {
 
 
 function homepageList(notes) {
+    console.log(notes)
 
     let list = $(".home-page-all-list");
     list.empty();
@@ -87,17 +92,17 @@ function homepageList(notes) {
     }
 }
 
-// function findNoteId() {
+function findNoteId() {
 
-//     let allNotes = $(".note-click");
+    let allNotes = $(".note-click");
 
-//     for (let i = 0; i < allNotes.length; i++) {
-//         $(allNotes[i]).click(function () {
-//             getSingleNoteDb(notes[i])
-//             // showSingleNote(notes[i])
-//         });
-//     }
-// }
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            getSingleNoteDb(notes[i])
+            // showSingleNote(notes[i])
+        });
+    }
+}
 
 // async function getSingleNoteDb(note) {
 
