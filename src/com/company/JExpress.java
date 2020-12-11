@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JExpress {
 
-    public void callExpress(){
+    public static void callExpress(){
 
     Express app = new Express();
     Database db = new Database();

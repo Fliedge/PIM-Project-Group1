@@ -5,38 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="edit-notes.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Personal Information Manager</title>
 </head>
 
 <body>
-    <header>
-        <img src="#" alt="logo">
-    </header>
+    <header></header>
     <nav>
-        <ul id="nav-list">
-            <li><a href="index.html">Home</a><br></li>
-            <li><a href="create-notes.html">Create note</a><br></li>
-            <li><a href="view.html">View</a></li>
+        <ul id="nav-ul">
+            <li class="nav-list"><a href="index.html">Home</a><br></li>
+            <li class="nav-list"><a href="create-notes.html">Create note</a><br></li>
         </ul>
     </nav>
 
     <form action="submit">
-        <li><input type="text" placeholder="Title..." id="title-input"><br></li>
 
-        <li><input type="text" placeholder="Description..." id="description-input">
+        <h2>Edit Note</h2>
 
-        </li>
+        <li><input type="text" id="title-input" value=""><br></li><br>
+        <li><textarea id="description-input" value=""></textarea></li><br>
 
-        <button id="edit-add-button"><a href="add-attachment.html">Add Files</a></button>
-        <button id="edit-add-button">Add Images</button>
-
-        <button id="save-changes">Save Changes</button>
+        <button onclick="submitNote()" id="add-button">Save</button>
+        <button onclick="addImageToNote()" id="add-image-button">Add images</button>
+        <button onclick="addFileToNote()" id="add-files-button">Add files</button>
 
 
     </form>
-
 
 </body>
 
