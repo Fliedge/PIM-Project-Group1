@@ -1,3 +1,4 @@
+let singleNote = {};
 let notes = [];
 
 getAllNotesDb();
@@ -57,41 +58,59 @@ function findNoteId() {
     for (let i = 0; i < allNotes.length; i++) {
         $(allNotes[i]).click(function () {
             getSingleNoteDb(notes[i])
-            showSingleNote(notes[i])
+            // showSingleNote(notes[i])
         });
     }
 }
 
-function showSingleNote(note) {
+function showSingleNote() {
+
+
+    console.log("check")
 
     let list = $(".home-page-all-list");
     list.empty()
 
 
-
+    
     list.append(`
-    <h1 class="title"> My Note </h1>
+    
+    <h1 class="title"> My first notes </h1>
+        
         <div class="home-wrapper">
         <div id="home-list">
             <span class="single-note-click">
                 <section class="single-note-columns">
                     <div class="home-column">
-                        <h2 class="single-note-title">${note.title}</h2><br>
-                        <p contenteditable="true" class="single-note-description">${note.description}</p>
+                        <h2 class="single-note-title">${singleNote.title}</h2><br>
+                        <p contenteditable="true" class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
-            <button onclick="updateNote" id="edit-button">Edit</button>
+            <a href="edit-notes.html"><button onclick="sendToEdit()" id="edit-button">Edit</button></a>
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
         </div>
     `)
+    
 }
+
+function sendToEdit() {
+    let allNotes = $(".note-click");
+
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            showSingleNoteForEdit(notes[i])
+            // showSingleNote(notes[i])
+        });
+    }
+}
+
 
 function submitNote() {
 
-    let titleInput = $("#title-input").val();
+    let titleInput = $("#title-input").val("");
     let descriptionInput = $("#description-input").val();
 
     if (titleInput.length >= 0) {
@@ -121,13 +140,14 @@ async function getAllNotesDb() {
 
 async function getSingleNoteDb(note) {
 
-    let noteToSend = Object.values(note)[0]
-    
+    // let noteToSend = Object.values(note)[0]
+    // let noteToSend = note.f
+    // console.log(noteToSend)
 
-    let result = await fetch("/rest/notes/id");
-    notes = await result.json(noteToSend);
+    let result = await fetch("/rest/notes/" + note.id);
+    singleNote = await result.json();
 
-    // showSingleNote();
+    showSingleNote();
 
 }
 
@@ -135,7 +155,7 @@ async function deleteNoteDb(note) {
 
     let result = await fetch("/rest/notes/id", {
         method: "DELETE",
-        BODY: JSON.stringify(note)
+        BODY: JSON.stringify()
     });
 
 }

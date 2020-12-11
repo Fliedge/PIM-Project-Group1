@@ -200,6 +200,12 @@ background-color: black;
     top: 56px;
 }
 
+#sort-choice{
+    position: absolute;
+    left: 200px;
+    top: 100px;
+}
+
 
 form{
 display: inline-block;

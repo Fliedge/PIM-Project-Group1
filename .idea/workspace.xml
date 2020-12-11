@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-notes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pim-grupp1.db" beforeDir="false" afterPath="$PROJECT_DIR$/pim-grupp1.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/create-notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/create-notes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/JExpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/JExpress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/sorting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/sorting.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,21 +58,25 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="157" key="GridCell.Tab.0.bottom" timestamp="1607674975414">
+    <state width="1237" height="102" key="GridCell.Tab.0.bottom" timestamp="1607680798972">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607674975414" />
-    <state width="1237" height="157" key="GridCell.Tab.0.center" timestamp="1607674975414">
+    <state width="1237" height="102" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607680798972" />
+    <state width="1237" height="102" key="GridCell.Tab.0.center" timestamp="1607680798972">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607674975414" />
-    <state width="1237" height="157" key="GridCell.Tab.0.left" timestamp="1607674975414">
+    <state width="1237" height="102" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607680798972" />
+    <state width="1237" height="102" key="GridCell.Tab.0.left" timestamp="1607680798972">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607674975414" />
-    <state width="1237" height="157" key="GridCell.Tab.0.right" timestamp="1607674975414">
+    <state width="1237" height="102" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607680798972" />
+    <state width="1237" height="102" key="GridCell.Tab.0.right" timestamp="1607680798972">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607674975414" />
+    <state width="1237" height="102" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607680798972" />
+    <state x="459" y="251" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1607677781822">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="459" y="251" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1607677781822" />
   </component>
 </project>
