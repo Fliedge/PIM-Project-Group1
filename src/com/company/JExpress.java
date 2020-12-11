@@ -58,11 +58,12 @@ public class JExpress {
 
 
             db.createNote(note);
-
+            response.send();
         });
 
-        app.put("/rest/notes/:id", (request, response) -> {
+        app.put("/rest/notes/id", (request, response) -> {
             Note note = (Note) request.getBody(Note.class);
+//
             db.updateNote(note);
 
             response.send("Update Successful!");

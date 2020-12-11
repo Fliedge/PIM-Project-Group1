@@ -11,9 +11,9 @@ function findNoteId() {
     for (let i = 0; i < allNotes.length; i++) {
         $(allNotes[i]).click(function () {
             getSingleNoteDb(notes[i])
-            // showSingleNote(notes[i])
         });
     }
+
 }
 
 // Send note functions
@@ -23,7 +23,6 @@ function submitNote() {
     let titleInput = $("#title-input").val();
     let descriptionInput = $("#description-input").val();
 
-    console.log(singleNote)
     if (titleInput.length >= 0) {
 
         note = {
@@ -41,29 +40,24 @@ function submitNote() {
 
 }
 
-
 // Edit note
 
 function showSingleNoteForEdit() {
-    console.log("funkish?")
 
     let list = $(".home-page-all-list");
     list.empty();
     
-
-
     list.append(`
     <form action="submit">
             
     <h2>Edit Note</h2>
    
-    <li><input type="text" id="edit-title-input" ><br></li><br>
+    <li><input type="text" id="edit-title-input" value=><br></li><br>
     <li><textarea id="edit-description-input"></textarea></li><br>
 
-    <button onclick="updateNoteDb()" id="update-button">Save</button>
+    <button onclick="editNote()" id="update-button">Save</button>
     <button onclick="addImageToNote()" id="add-image-button">Add images</button>
     <button onclick="addFileToNote()" id="add-files-button">Add files</button>
-   
    
     </form>
     `)
@@ -71,9 +65,19 @@ function showSingleNoteForEdit() {
     $("#edit-title-input").val(singleNote.title);
     $("#edit-description-input").val(singleNote.description);
 
+}
+
+function editNote() {
 
 
-    
+    let noteToEdit = {
+
+        id: singleNote.id,
+        title: $("#edit-title-input").val(),
+        description: $("#edit-description-input").val()
+
+    }
+    updateNoteDb(noteToEdit)
 }
 
 // Display functions
@@ -135,7 +139,7 @@ function showSingleNote() {
         <div class="home-wrapper">
         <div id="home-list">
             <span class="single-note-click">
-                <section class="single-note-columns">
+                <section onclick="displayList()" class="single-note-columns">
                     <div class="home-column">
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
                         <pre class="single-note-description">${singleNote.description}</pre>
@@ -146,26 +150,10 @@ function showSingleNote() {
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
-        </div>
-        
+        </div>  
     `)
-    console.log(singleNote)
-
 }
 
-// Sorting functions
-
-function sortingChoices(menu) {
-
-    if (menu.value == '1') {
-        getAllNotesDbSortedByTitle();
-    } else if (menu.value == '2') {
-        getAllNotesDbSortedByDateAsc();
-    } else if (menu.value == '3') {
-        getAllNotesDbSortedByDateDesc();
-    }
-
-}
 
 // DB functions
 
@@ -197,8 +185,6 @@ async function deleteNoteDb(note) {
 
 async function createNoteDb(note) {
 
-    console.log(note)
-
     let result = await fetch("/rest/notes", {
         method: "POST",
         body: JSON.stringify(note)
@@ -208,10 +194,28 @@ async function createNoteDb(note) {
 
 async function updateNoteDb(note) {
 
+
     let result = await fetch("/rest/notes/id", {
         method: "PUT",
         body: JSON.stringify(note)
     });
+
+    // getAllNotesDb();
+    location.reload()
+
+}
+
+// Sorting functions
+
+function sortingChoices(menu) {
+
+    if (menu.value == '1') {
+        getAllNotesDbSortedByTitle();
+    } else if (menu.value == '2') {
+        getAllNotesDbSortedByDateAsc();
+    } else if (menu.value == '3') {
+        getAllNotesDbSortedByDateDesc();
+    }
 
 }
 
