@@ -38,9 +38,10 @@ function sendToEdit() {
 
 function submitNote() {
 
-    let titleInput = $("#title-input").val("");
+    let titleInput = $("#title-input").val();
     let descriptionInput = $("#description-input").val();
 
+    console.log(singleNote)
     if (titleInput.length >= 0) {
 
         note = {
@@ -128,7 +129,7 @@ function showSingleNote() {
                 <section class="single-note-columns">
                     <div class="home-column">
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <p contenteditable="true" class="single-note-description">${singleNote.description}</p>
+                        <p class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
@@ -187,6 +188,8 @@ async function deleteNoteDb(note) {
 }
 
 async function createNoteDb(note) {
+
+    console.log(note)
 
     let result = await fetch("/rest/notes", {
         method: "POST",

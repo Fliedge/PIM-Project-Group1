@@ -1,6 +1,67 @@
+let singleNote = {};
 let notes = [];
 
 getAllNotesDb();
+
+
+
+
+function findNoteId() {
+
+    let allNotes = $(".note-click");
+
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            getSingleNoteDb(notes[i])
+            // showSingleNote(notes[i])
+        });
+    }
+}
+
+
+
+// Send note functions
+
+
+
+function sendToEdit() {
+    let allNotes = $(".note-click");
+
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            showSingleNoteForEdit(notes[i])
+            // showSingleNote(notes[i])
+        });
+    }
+}
+
+
+function submitNote() {
+
+    let titleInput = $("#title-input").val("");
+    let descriptionInput = $("#description-input").val();
+
+    console.log(singleNote)
+    if (titleInput.length >= 0) {
+
+        note = {
+            title: titleInput,
+            description: descriptionInput
+        };
+        createNoteDb(note);
+    }
+    else {
+        alert("Title needs to be added");
+    }
+
+    $("#title-input").val();
+    $("#description-input").val("");
+
+}
+
+
+
+// Display functions
 
 
 function displayList() {
@@ -44,31 +105,19 @@ function displayList() {
             `)
         }
     }
-    console.log(notes)
-
     findNoteId();
 
 }
 
-function findNoteId() {
-
-    let allNotes = $(".note-click");
-
-    for (let i = 0; i < allNotes.length; i++) {
-        $(allNotes[i]).click(function () {
-            getSingleNoteDb(notes[i])
-            // showSingleNote(notes[i])
-        });
-    }
-}
-
-function showSingleNote(note) {
+function showSingleNote() {
 
 
     console.log("check")
 
     let list = $(".home-page-all-list");
     list.empty()
+
+
 
     list.append(`
     
@@ -79,40 +128,35 @@ function showSingleNote(note) {
             <span class="single-note-click">
                 <section class="single-note-columns">
                     <div class="home-column">
-                        <h2 class="single-note-title">${note.title}</h2><br>
-                        <p contenteditable="true" class="single-note-description">${note.description}</p>
+                        <h2 class="single-note-title">${singleNote.title}</h2><br>
+                        <p class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
-            <button onclick="updateNote" id="edit-button">Edit</button>
+            <a href="edit-notes.html"><button onclick="sendToEdit()" id="edit-button">Edit</button></a>
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
         </div>
     `)
-}
-
-function submitNote() {
-
-    let titleInput = $("#title-input").val();
-    let descriptionInput = $("#description-input").val();
-
-    if (titleInput.length >= 0) {
-
-        note = {
-            title: titleInput,
-            description: descriptionInput
-        };
-        createNoteDb(note);
-    }
-    else {
-        alert("Title needs to be added");
-    }
-
-    $("#title-input").val("");
-    $("#description-input").val("");
 
 }
+
+// Sorting functions
+
+function sortingChoices(menu) {
+
+    if (menu.value == '1') {
+        getAllNotesDbSortedByTitle();
+    } else if (menu.value == '2') {
+        getAllNotesDbSortedByDateAsc();
+    } else if (menu.value == '3') {
+        getAllNotesDbSortedByDateDesc();
+    }
+
+}
+
+// DB functions
 
 async function getAllNotesDb() {
 
@@ -126,12 +170,11 @@ async function getSingleNoteDb(note) {
 
     // let noteToSend = Object.values(note)[0]
     // let noteToSend = note.f
-    // console.log(noteToSend)
 
     let result = await fetch("/rest/notes/" + note.id);
-    notes = await result.json();
+    singleNote = await result.json();
 
-    // showSingleNote();
+    showSingleNote();
 
 }
 
@@ -159,6 +202,33 @@ async function updateNoteDb(note) {
         method: "PUT",
         body: JSON.stringify(note)
     });
+
+}
+
+async function getAllNotesDbSortedByTitle() {
+
+    let result = await fetch("/rest/getNotesOrderByTitle");
+    notes = await result.json();
+
+    displayList();
+
+}
+
+async function getAllNotesDbSortedByDateAsc() {
+
+    let result = await fetch("/rest/getNotesOrderByLastUpdateAsc");
+    notes = await result.json();
+
+    displayList();
+
+}
+
+async function getAllNotesDbSortedByDateDesc() {
+
+    let result = await fetch("/rest/getNotesOrderByLastUpdateDesc");
+    notes = await result.json();
+
+    displayList();
 
 }
 
