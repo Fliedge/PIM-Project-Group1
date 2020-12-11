@@ -1,56 +1,50 @@
-let note1 = {
-    title: "Title test 1",
-    description: "Description test 1"
-}
-
-let note2 = {
-    title: "Title test 2",
-    description: "Description test 2"
-}
-
-let note3 = {
-    title: "Title test 3",
-    description: "Description test 3"
-}
-
-let note4 = {
-    title: "Title test 4",
-    description: "Description test 4"
-}
-
 let notes = [];
 
-
-notes.push(note1);
-notes.push(note2);
-notes.push(note3);
-notes.push(note4);
+getAllNotesDb();
 
 
-// console.log(notes);
+function displayList() {
 
-homepageList();
-
-let newob = null;
-
-function homepageList() {
-
-    let list = $("#home-list");
+    let list = $(".home-page-all-list");
+    let i = 0;
     list.empty();
 
-
     for (note of notes) {
-        list.append(`
-        <a class="note-click" href="view.html">
-            <section class="home-note-columns">
-                <div class="home-column">
-                    <h2 class="home-note-title">${note.title}</h2>
-                    <p class="home-note-description">${note.description}</p>
-                </div>
-            </section>
-        </a>
-        `)
+
+        let internList = $("#home-list");
+
+        if (i == 0) {
+            list.append(`
+            <h1 class="title"> My Latest Notes </h1>
+            <div class="home-wrapper">
+            <div id="home-list">
+                <span class="note-click">
+                    <section class="home-note-columns">
+                        <div class="home-column">
+                            <h2 class="home-note-title">${note.title}</h2><br>
+                            <p class="home-note-description">${note.description}</p>
+                        </div>
+                    </section>
+                </span>
+            </div>
+            </div>
+            `)
+            i++;
+        }
+        else {
+            internList.append(`
+            <span class="note-click">
+                <section class="home-note-columns">
+                    <div class="home-column">
+                        <h2 class="home-note-title">${note.title}</h2><br>
+                        <p class="home-note-description">${note.description}</p>
+                    </div>
+                </section>
+            </span>
+            `)
+        }
     }
+    console.log(notes)
 
     findNoteId();
 
@@ -62,59 +56,58 @@ function findNoteId() {
 
     for (let i = 0; i < allNotes.length; i++) {
         $(allNotes[i]).click(function () {
-            // showSingleNote(notes[i]);
-            // console.log(notes[i])
-
-            // console.log("runs")
+            getSingleNoteDb(notes[i])
+            showSingleNote(notes[i])
         });
     }
 }
 
-// function showSingleNote(note) {
-    
+function showSingleNote(note) {
 
-//     let singleNotes = $("#show-single-note")
-//     console.log("WORKS 2")
-
-//         let oneNote = {
-//             title: note.title,
-//             description: note.description
-//         }
+    let list = $(".home-page-all-list");
+    list.empty()
 
 
-//     singleNotes.append(`
-//         <li>${oneNote.title}</li>
-//         <li>${oneNote.description}</li>
-//         `);
-// }
-// showSingleNote()
 
+    list.append(`
+    <h1 class="title"> My Note </h1>
+        <div class="home-wrapper">
+        <div id="home-list">
+            <span class="single-note-click">
+                <section class="single-note-columns">
+                    <div class="home-column">
+                        <h2 class="single-note-title">${note.title}</h2><br>
+                        <p contenteditable="true" class="single-note-description">${note.description}</p>
+                    </div>
+                </section>
+            </span><br>
+            <button onclick="updateNote" id="edit-button">Edit</button>
+            <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
+            <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
+        </div>
+        </div>
+    `)
+}
 
 function submitNote() {
 
-    let titleInput = $("#title-input");
-    let descriptionInput = $("#description-input");
+    let titleInput = $("#title-input").val();
+    let descriptionInput = $("#description-input").val();
 
-    let bool = titleInput.includes("ä")
-    if (bool == true) {
-        console.log("true")
-    }
-
-    if (titleInput > 0) {
+    if (titleInput.length >= 0) {
 
         note = {
             title: titleInput,
             description: descriptionInput
         };
-        // createNoteDb(note);
+        createNoteDb(note);
     }
     else {
-        alert("Title needs to be added")
+        alert("Title needs to be added");
     }
-}
 
-function viewNotes() {
-
+    $("#title-input").val("");
+    $("#description-input").val("");
 
 }
 
@@ -123,12 +116,18 @@ async function getAllNotesDb() {
     let result = await fetch("rest/notes");
     notes = await result.json();
 
+    displayList()
 }
 
 async function getSingleNoteDb(note) {
 
+    let noteToSend = Object.values(note)[0]
+    
+
     let result = await fetch("/rest/notes/id");
-    notes = await result.json(note);
+    notes = await result.json(noteToSend);
+
+    // showSingleNote();
 
 }
 

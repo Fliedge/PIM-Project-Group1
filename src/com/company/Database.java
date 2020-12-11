@@ -114,9 +114,10 @@ public class Database {
     // Add new note into database
     public void createNote(Note note){
         String query = "INSERT INTO notes (title, description, lastUpdate) VALUES (?,?, CURRENT_TIMESTAMP);";
+
         try {
             PreparedStatement stmt =conn.prepareStatement(query);
-            stmt.setString(1, note.getTitle());
+            stmt.setString(1, changeTitleToCapitalLetterFirst(note.getTitle()));
             stmt.setString(2,note.getDescription());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
@@ -129,7 +130,7 @@ public class Database {
         String query = "UPDATE notes SET title = ?, description =?, lastUpdate = CURRENT_TIMESTAMP WHERE id = ?;";
         try {
             PreparedStatement stmt= conn.prepareStatement(query);
-            stmt.setString(1, note.getTitle());
+            stmt.setString(1, changeTitleToCapitalLetterFirst(note.getTitle()));
             stmt.setString(2,note.getDescription());
             stmt.setInt(3, note.getId());
             stmt.executeUpdate();
@@ -150,7 +151,7 @@ public class Database {
         }
     }
 
-    // Search in database om title-field
+   /* // Search in database om title-field
     public List<Note> searchDatabaseByTitle (String searchString){
         List<Note> notes = null;
         String query = "SELECT * FROM notes WHERE title LIKE ('%'||?||'%');";
@@ -167,6 +168,15 @@ public class Database {
             e.printStackTrace();
         }
         return notes;
+    }*/
+
+    public String changeTitleToCapitalLetterFirst (String input) {
+        char[] temp = input.toCharArray();
+        char oldFirstLetter = input.charAt(0);
+        char newFirstLetter = Character.toUpperCase(oldFirstLetter);
+        temp[0] = newFirstLetter;
+        String output = String.valueOf(temp);
+        return output;
     }
 }
 
