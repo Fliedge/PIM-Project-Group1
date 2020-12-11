@@ -124,12 +124,12 @@ async function getAllNotesDb() {
 
 async function getSingleNoteDb(note) {
 
-    let noteToSend = Object.values(note)[0]
+    // let noteToSend = Object.values(note)[0]
     // let noteToSend = note.f
-    console.log(noteToSend)
+    // console.log(noteToSend)
 
-    let result = await fetch("/rest/notes/id");
-    notes = await result.json(noteToSend);
+    let result = await fetch("/rest/notes/" + note.id);
+    notes = await result.json();
 
     // showSingleNote();
 
@@ -139,7 +139,7 @@ async function deleteNoteDb(note) {
 
     let result = await fetch("/rest/notes/id", {
         method: "DELETE",
-        BODY: JSON.stringify(note)
+        BODY: JSON.stringify()
     });
 
 }

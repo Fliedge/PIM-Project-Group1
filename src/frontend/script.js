@@ -1,3 +1,4 @@
+let singleNote = {};
 let notes = [];
 
 getAllNotesDb();
@@ -62,7 +63,7 @@ function findNoteId() {
     }
 }
 
-function showSingleNote(note) {
+function showSingleNote() {
 
 
     console.log("check")
@@ -70,6 +71,8 @@ function showSingleNote(note) {
     let list = $(".home-page-all-list");
     list.empty()
 
+
+    
     list.append(`
     
     <h1 class="title"> My first notes </h1>
@@ -79,8 +82,8 @@ function showSingleNote(note) {
             <span class="single-note-click">
                 <section class="single-note-columns">
                     <div class="home-column">
-                        <h2 class="single-note-title">${note.title}</h2><br>
-                        <p contenteditable="true" class="single-note-description">${note.description}</p>
+                        <h2 class="single-note-title">${singleNote.title}</h2><br>
+                        <p contenteditable="true" class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
@@ -90,11 +93,12 @@ function showSingleNote(note) {
         </div>
         </div>
     `)
+    
 }
 
 function submitNote() {
 
-    let titleInput = $("#title-input").val();
+    let titleInput = $("#title-input").val("");
     let descriptionInput = $("#description-input").val();
 
     if (titleInput.length >= 0) {
@@ -124,14 +128,14 @@ async function getAllNotesDb() {
 
 async function getSingleNoteDb(note) {
 
-    let noteToSend = Object.values(note)[0]
+    // let noteToSend = Object.values(note)[0]
     // let noteToSend = note.f
-    console.log(noteToSend)
+    // console.log(noteToSend)
 
-    let result = await fetch("/rest/notes/id");
-    notes = await result.json(noteToSend);
+    let result = await fetch("/rest/notes/" + note.id);
+    singleNote = await result.json();
 
-    // showSingleNote();
+    showSingleNote();
 
 }
 
@@ -139,7 +143,7 @@ async function deleteNoteDb(note) {
 
     let result = await fetch("/rest/notes/id", {
         method: "DELETE",
-        BODY: JSON.stringify(note)
+        BODY: JSON.stringify()
     });
 
 }

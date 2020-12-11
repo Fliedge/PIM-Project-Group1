@@ -1,4 +1,5 @@
 package com.company;
+
 import express.Express;
 import express.middleware.Middleware;
 
@@ -8,31 +9,33 @@ import java.util.List;
 
 public class JExpress {
 
-    public void callExpress(){
+    public void callExpress() {
 
-    Express app = new Express();
-    Database db = new Database();
+        Express app = new Express();
+        Database db = new Database();
 
         app.get("/rest/notes", (request, response) -> {
-        List<Note> notes = db.getNotes();
+            List<Note> notes = db.getNotes();
 
-        response.json(notes);
+            response.json(notes);
         });
 
 
         app.get("/rest/notes/:id", (request, response) -> {
-        try {
-            int id = Integer.parseInt(request.getParam("id"));
+
+            int id = 0;
+            try {
+                id = Integer.parseInt(request.getParam("id"));
+
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
 
             Note note = db.getNoteByID(id);
-
             response.json(note);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
         });
 
-        app.get("/rest/getNotesOrderByTitle", (request, response) ->{
+        app.get("/rest/getNotesOrderByTitle", (request, response) -> {
             List<Note> notes = db.getNotesOrderByTitle();
 
             response.json(notes);
@@ -44,37 +47,38 @@ public class JExpress {
             response.json(notes);
         });
 
-        app.get("/rest/getNotesOrderByLastUpdateDesc",(request, response) -> {
+        app.get("/rest/getNotesOrderByLastUpdateDesc", (request, response) -> {
             List<Note> notes = db.getNotesOrderByLastupdateDesc();
 
             response.json(notes);
         });
 
         app.post("/rest/notes", (request, response) -> {
-        Note note = (Note) request.getBody(Note.class);
+            Note note = (Note) request.getBody(Note.class);
 
-        db.createNote(note);
+            db.createNote(note);
 
         });
 
         app.put("/rest/notes/:id", (request, response) -> {
-        Note note = (Note) request.getBody(Note.class);
-        db.updateNote(note);
+            Note note = (Note) request.getBody(Note.class);
+            db.updateNote(note);
 
-        response.send("Update Successful!");
+            response.send("Update Successful!");
         });
 
         app.delete("/rest/notes/:id", (request, response) -> {
-        Note note = (Note) request.getBody(Note.class);
-        db.deleteNote(note);
+            Note note = (Note) request.getBody(Note.class);
+            db.deleteNote(note);
 
         });
 
         try {
-        app.use(Middleware.statics(Paths.get("src/frontend").toString()));
+            app.use(Middleware.statics(Paths.get("src/frontend").toString()));
         } catch (IOException e) {
-        e.printStackTrace();
-        };
+            e.printStackTrace();
+        }
+        ;
 
         app.listen(1000);
         System.out.println("Server started on port 1000");
