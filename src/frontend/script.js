@@ -54,7 +54,7 @@ function submitNote() {
         alert("Title needs to be added");
     }
 
-    $("#title-input").val("");
+    $("#title-input").val(singleNote.title);
     $("#description-input").val("");
 
 }
@@ -63,8 +63,33 @@ function submitNote() {
 
 function showSingleNoteForEdit() {
     console.log("funkish?")
-    $("#title-input").val(singleNote.title)
+
+    let list = $(".home-page-all-list");
+    list.empty();
     
+
+
+    list.append(`
+    <form action="submit">
+            
+    <h2>Edit Note</h2>
+   
+    <li><input type="text" id="title-input" ><br></li><br>
+    <li><textarea id="description-input"></textarea></li><br>
+
+    <button onclick="submitNote()" id="add-button">Save</button>
+    <button onclick="addImageToNote()" id="add-image-button">Add images</button>
+    <button onclick="addFileToNote()" id="add-files-button">Add files</button>
+   
+   
+    </form>
+    `)
+
+    $("#title-input").val(singleNote.title);
+    $("description-input").val(singleNote.description)
+
+
+
     
 }
 
@@ -142,7 +167,7 @@ function showSingleNote() {
                     </div>
                 </section>
             </span><br>
-            <a href="edit-notes.html"><button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button></a>
+            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>

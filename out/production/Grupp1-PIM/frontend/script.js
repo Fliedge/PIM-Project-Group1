@@ -38,9 +38,10 @@ function sendToEdit() {
 
 function submitNote() {
 
-    let titleInput = $("#title-input").val("");
+    let titleInput = $("#title-input").val();
     let descriptionInput = $("#description-input").val();
 
+    console.log(singleNote)
     if (titleInput.length >= 0) {
 
         note = {
@@ -59,27 +60,12 @@ function submitNote() {
 }
 
 // Edit note
-function showSingleNoteForEdit() {
-    let editNoteList = $(".note-to-edit");
-    editNoteList.empty();
-    
-    editNoteList.append(`
-    <form action="submit">
-            
-        <h2>Edit Note</h2>
-    
-        <li><input type="text" id="title-input" value="asdasg"><br></li><br>
-        <li><textarea id="description-input" value=""></textarea></li><br>
-    
-        <button onclick="submitNote()" id="add-button">Save</button>
-        <button onclick="addImageToNote()" id="add-image-button">Add images</button>
-        <button onclick="addFileToNote()" id="add-files-button">Add files</button>
-    
-    
-    </form>
-    `)
 
+function showSingleNoteForEdit() {
+    console.log("funkish?")
     $("#title-input").val(singleNote.title)
+    
+    
 }
 
 
@@ -152,11 +138,11 @@ function showSingleNote() {
                 <section class="single-note-columns">
                     <div class="home-column">
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <p contenteditable="true" class="single-note-description">${singleNote.description}</p>
+                        <p class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
-            <a href="edit-notes.html"><button onclick="sendToEdit()" id="edit-button">Edit</button></a>
+            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
@@ -211,6 +197,8 @@ async function deleteNoteDb(note) {
 }
 
 async function createNoteDb(note) {
+
+    console.log(note)
 
     let result = await fetch("/rest/notes", {
         method: "POST",
