@@ -57,20 +57,23 @@ function findNoteId() {
     for (let i = 0; i < allNotes.length; i++) {
         $(allNotes[i]).click(function () {
             getSingleNoteDb(notes[i])
-            showSingleNote(notes[i])
+            // showSingleNote(notes[i])
         });
     }
 }
 
 function showSingleNote(note) {
 
+
+    console.log("check")
+
     let list = $(".home-page-all-list");
     list.empty()
 
-
-
     list.append(`
-    <h1 class="title"> My Note </h1>
+    
+    <h1 class="title"> My first notes </h1>
+        
         <div class="home-wrapper">
         <div id="home-list">
             <span class="single-note-click">
@@ -122,7 +125,8 @@ async function getAllNotesDb() {
 async function getSingleNoteDb(note) {
 
     let noteToSend = Object.values(note)[0]
-    
+    // let noteToSend = note.f
+    console.log(noteToSend)
 
     let result = await fetch("/rest/notes/id");
     notes = await result.json(noteToSend);

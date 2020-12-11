@@ -49,14 +49,19 @@ function homepageList(notes) {
 
     for (note of notes) {
         list.append(`
-        <a class="note-click" href="view.html">
-            <section class="home-note-columns">
-                <div class="home-column">
-                    <h2 class="home-note-title">${note.title}</h2>
-                    <p class="home-note-description">${note.description}</p>
-                </div>
-            </section>
-        </a>
+        <h1 class="title"> My Latest Notes </h1>
+        <div class="home-wrapper">
+        <div id="home-list">
+            <span class="note-click">
+                <section class="home-note-columns">
+                    <div class="home-column">
+                        <h2 class="home-note-title">${note.title}</h2><br>
+                        <p class="home-note-description">${note.description}</p>
+                    </div>
+                </section>
+            </span>
+        </div>
+        </div>
         `)
     }
 
