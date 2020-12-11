@@ -58,6 +58,15 @@ function submitNote() {
 
 }
 
+// Edit note
+
+function showSingleNoteForEdit() {
+    console.log("funkish?")
+    $("#title-input").val(singleNote.title)
+    
+    
+}
+
 
 
 // Display functions
@@ -132,7 +141,7 @@ function showSingleNote() {
                     </div>
                 </section>
             </span><br>
-            <a href="edit-notes.html"><button onclick="sendToEdit()" id="edit-button">Edit</button></a>
+            <a href="edit-notes.html"><button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button></a>
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>

@@ -11,7 +11,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        JExpress.callExpress();
+        JExpress express = new JExpress();
+        express.callExpress();
 
 
 
