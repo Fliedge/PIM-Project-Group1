@@ -63,13 +63,14 @@ a.menu_links {
 
 }
 
-
 .home-note-columns{
 
     flex: 1;
     border: 1px solid gray;
     /* margin: 2px; */
     padding: 10px;
+    
+    
 
     display: flex;
     flex-flow: row wrap;
@@ -78,10 +79,30 @@ a.menu_links {
 
 }
 
+.single-note-columns{
+    flex: 1;
+    border: 1px solid gray;
+    /* margin: 2px; */
+    padding: 10px;
+    height: 335px;
+
+    display: flex;
+    flex-flow: row wrap;
+    margin: 5px 0;
+    margin-bottom: 9px;
+}
+
 .home-note-columns:hover{
 background-color: #bbbbbb14;
 }
 
+
+.home-note-description {
+    width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 
 
@@ -118,13 +139,65 @@ position: absolute;
 left: -1px;
 }
 
-span{
+#edit-button{
+    background-color: #b4bab181;
+    border: none;
+    border-radius: 3px;
+    color: #333;
+    padding: 7px 41px;
+    font-size: 15px;
+    position: relative;
+    left: 492px;
+}
+
+#edit-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+    }
+
+#edit-image-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 15px; 
+    font-size: 15px;
+    position: absolute;
+    left: -1px;
+}
+
+#edit-image-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+    }
+
+#edit-files-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 26px;
+    font-size: 15px;
+}
+
+#edit-files-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+
+.note-click{
 cursor: pointer;
 }
 
-span:hover{
+.note-click:hover{
 background-color: black;
 
+}
+
+.title{
+    position: relative;
+    left: 200px;
+    top: 56px;
 }
 
 
