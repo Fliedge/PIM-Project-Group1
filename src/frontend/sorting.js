@@ -87,29 +87,29 @@ function homepageList(notes) {
     }
 }
 
-function findNoteId() {
+// function findNoteId() {
 
-    let allNotes = $(".note-click");
+//     let allNotes = $(".note-click");
 
-    for (let i = 0; i < allNotes.length; i++) {
-        $(allNotes[i]).click(function () {
-            getSingleNoteDb(notes[i])
-            // showSingleNote(notes[i])
-        });
-    }
-}
+//     for (let i = 0; i < allNotes.length; i++) {
+//         $(allNotes[i]).click(function () {
+//             getSingleNoteDb(notes[i])
+//             // showSingleNote(notes[i])
+//         });
+//     }
+// }
 
-async function getSingleNoteDb(note) {
+// async function getSingleNoteDb(note) {
 
-    // let noteToSend = Object.values(note)[0]
-    // let noteToSend = note.f
-    // console.log(noteToSend)
+//     // let noteToSend = Object.values(note)[0]
+//     // let noteToSend = note.f
+//     // console.log(noteToSend)
 
-    let result = await fetch("/rest/notes/" + note.id);
-    singleNote = await result.json();
+//     let result = await fetch("/rest/notes/" + note.id);
+//     singleNote = await result.json();
 
-    showSingleNote();
+//     showSingleNote();
 
-}
+// }
 
 

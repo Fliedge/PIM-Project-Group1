@@ -87,7 +87,7 @@ function showSingleNote() {
                     </div>
                 </section>
             </span><br>
-            <button onclick="updateNote" id="edit-button">Edit</button>
+            <a href="edit-notes.html"><button onclick="sendToEdit()" id="edit-button">Edit</button></a>
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
@@ -95,6 +95,18 @@ function showSingleNote() {
     `)
     
 }
+
+function sendToEdit() {
+    let allNotes = $(".note-click");
+
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            showSingleNoteForEdit(notes[i])
+            // showSingleNote(notes[i])
+        });
+    }
+}
+
 
 function submitNote() {
 
