@@ -57,10 +57,10 @@ function showSingleNoteForEdit() {
             
     <h2>Edit Note</h2>
    
-    <li><input type="text" id="title-input" ><br></li><br>
-    <li><textarea id="description-input"></textarea></li><br>
+    <li><input type="text" id="edit-title-input" ><br></li><br>
+    <li><textarea id="edit-description-input"></textarea></li><br>
 
-    <button onclick="submitNote()" id="add-button">Save</button>
+    <button onclick="updateNoteDb()" id="update-button">Save</button>
     <button onclick="addImageToNote()" id="add-image-button">Add images</button>
     <button onclick="addFileToNote()" id="add-files-button">Add files</button>
    
@@ -68,8 +68,8 @@ function showSingleNoteForEdit() {
     </form>
     `)
 
-    $("#title-input").val(singleNote.title);
-    $("#description-input").val(singleNote.description);
+    $("#edit-title-input").val(singleNote.title);
+    $("#edit-description-input").val(singleNote.description);
 
 
 
@@ -138,7 +138,7 @@ function showSingleNote() {
                 <section class="single-note-columns">
                     <div class="home-column">
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <p class="single-note-description">${singleNote.description}</p>
+                        <pre class="single-note-description">${singleNote.description}</pre>
                     </div>
                 </section>
             </span><br>
