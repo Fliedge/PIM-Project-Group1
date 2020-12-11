@@ -4,8 +4,6 @@ let notes = [];
 getAllNotesDb();
 
 
-
-
 function findNoteId() {
 
     let allNotes = $(".note-click");
@@ -18,23 +16,7 @@ function findNoteId() {
     }
 }
 
-
-
 // Send note functions
-
-
-
-function sendToEdit() {
-    let allNotes = $(".note-click");
-
-    for (let i = 0; i < allNotes.length; i++) {
-        $(allNotes[i]).click(function () {
-            showSingleNoteForEdit(notes[i])
-            // showSingleNote(notes[i])
-        });
-    }
-}
-
 
 function submitNote() {
 
@@ -58,6 +40,7 @@ function submitNote() {
     $("#description-input").val("");
 
 }
+
 
 // Edit note
 
@@ -86,17 +69,14 @@ function showSingleNoteForEdit() {
     `)
 
     $("#title-input").val(singleNote.title);
-    $("description-input").val(singleNote.description)
+    $("#description-input").val(singleNote.description);
 
 
 
     
 }
 
-
-
 // Display functions
-
 
 function displayList() {
 
@@ -110,7 +90,7 @@ function displayList() {
 
         if (i == 0) {
             list.append(`
-            <h1 class="title"> My Latest Notes </h1>
+            <h1 class="title"> My Notes </h1>
             <div class="home-wrapper">
             <div id="home-list">
                 <span class="note-click">
@@ -145,17 +125,12 @@ function displayList() {
 
 function showSingleNote() {
 
-
-    console.log("check")
-
     let list = $(".home-page-all-list");
     list.empty()
 
-
-
     list.append(`
     
-    <h1 class="title"> My first notes </h1>
+    <h1 class="title"> My Notes </h1>
         
         <div class="home-wrapper">
         <div id="home-list">
@@ -172,7 +147,9 @@ function showSingleNote() {
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
         </div>
+        
     `)
+    console.log(singleNote)
 
 }
 
@@ -201,9 +178,6 @@ async function getAllNotesDb() {
 }
 
 async function getSingleNoteDb(note) {
-
-    // let noteToSend = Object.values(note)[0]
-    // let noteToSend = note.f
 
     let result = await fetch("/rest/notes/" + note.id);
     singleNote = await result.json();

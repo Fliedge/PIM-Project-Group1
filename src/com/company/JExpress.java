@@ -56,7 +56,6 @@ public class JExpress {
         app.post("/rest/notes", (request, response) -> {
             Note note = (Note) request.getBody(Note.class);
 
-            System.out.println(note);
 
             db.createNote(note);
 
