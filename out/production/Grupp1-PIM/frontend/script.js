@@ -41,7 +41,6 @@ function submitNote() {
     let titleInput = $("#title-input").val("");
     let descriptionInput = $("#description-input").val();
 
-    console.log(singleNote)
     if (titleInput.length >= 0) {
 
         note = {
@@ -54,9 +53,33 @@ function submitNote() {
         alert("Title needs to be added");
     }
 
-    $("#title-input").val();
+    $("#title-input").val("");
     $("#description-input").val("");
 
+}
+
+// Edit note
+function showSingleNoteForEdit() {
+    let editNoteList = $(".note-to-edit");
+    editNoteList.empty();
+    
+    editNoteList.append(`
+    <form action="submit">
+            
+        <h2>Edit Note</h2>
+    
+        <li><input type="text" id="title-input" value="asdasg"><br></li><br>
+        <li><textarea id="description-input" value=""></textarea></li><br>
+    
+        <button onclick="submitNote()" id="add-button">Save</button>
+        <button onclick="addImageToNote()" id="add-image-button">Add images</button>
+        <button onclick="addFileToNote()" id="add-files-button">Add files</button>
+    
+    
+    </form>
+    `)
+
+    $("#title-input").val(singleNote.title)
 }
 
 
@@ -129,7 +152,7 @@ function showSingleNote() {
                 <section class="single-note-columns">
                     <div class="home-column">
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <p class="single-note-description">${singleNote.description}</p>
+                        <p contenteditable="true" class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
