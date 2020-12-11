@@ -4,6 +4,65 @@ let notes = [];
 getAllNotesDb();
 
 
+
+
+function findNoteId() {
+
+    let allNotes = $(".note-click");
+
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            getSingleNoteDb(notes[i])
+            // showSingleNote(notes[i])
+        });
+    }
+}
+
+
+
+// Send note functions
+
+
+
+function sendToEdit() {
+    let allNotes = $(".note-click");
+
+    for (let i = 0; i < allNotes.length; i++) {
+        $(allNotes[i]).click(function () {
+            showSingleNoteForEdit(notes[i])
+            // showSingleNote(notes[i])
+        });
+    }
+}
+
+
+function submitNote() {
+
+    let titleInput = $("#title-input").val("");
+    let descriptionInput = $("#description-input").val();
+
+    if (titleInput.length >= 0) {
+
+        note = {
+            title: titleInput,
+            description: descriptionInput
+        };
+        createNoteDb(note);
+    }
+    else {
+        alert("Title needs to be added");
+    }
+
+    $("#title-input").val("");
+    $("#description-input").val("");
+
+}
+
+
+
+// Display functions
+
+
 function displayList() {
 
     let list = $(".home-page-all-list");
@@ -45,22 +104,8 @@ function displayList() {
             `)
         }
     }
-    console.log(notes)
-
     findNoteId();
 
-}
-
-function findNoteId() {
-
-    let allNotes = $(".note-click");
-
-    for (let i = 0; i < allNotes.length; i++) {
-        $(allNotes[i]).click(function () {
-            getSingleNoteDb(notes[i])
-            // showSingleNote(notes[i])
-        });
-    }
 }
 
 function showSingleNote() {
@@ -72,7 +117,7 @@ function showSingleNote() {
     list.empty()
 
 
-    
+
     list.append(`
     
     <h1 class="title"> My first notes </h1>
@@ -93,42 +138,24 @@ function showSingleNote() {
         </div>
         </div>
     `)
-    
-}
-
-function sendToEdit() {
-    let allNotes = $(".note-click");
-
-    for (let i = 0; i < allNotes.length; i++) {
-        $(allNotes[i]).click(function () {
-            showSingleNoteForEdit(notes[i])
-            // showSingleNote(notes[i])
-        });
-    }
-}
-
-
-function submitNote() {
-
-    let titleInput = $("#title-input").val("");
-    let descriptionInput = $("#description-input").val();
-
-    if (titleInput.length >= 0) {
-
-        note = {
-            title: titleInput,
-            description: descriptionInput
-        };
-        createNoteDb(note);
-    }
-    else {
-        alert("Title needs to be added");
-    }
-
-    $("#title-input").val("");
-    $("#description-input").val("");
 
 }
+
+// Sorting functions
+
+function sortingChoices(menu) {
+
+    if (menu.value == '1') {
+        getAllNotesDbSortedByTitle();
+    } else if (menu.value == '2') {
+        getAllNotesDbSortedByDateAsc();
+    } else if (menu.value == '3') {
+        getAllNotesDbSortedByDateDesc();
+    }
+
+}
+
+// DB functions
 
 async function getAllNotesDb() {
 
@@ -142,7 +169,6 @@ async function getSingleNoteDb(note) {
 
     // let noteToSend = Object.values(note)[0]
     // let noteToSend = note.f
-    // console.log(noteToSend)
 
     let result = await fetch("/rest/notes/" + note.id);
     singleNote = await result.json();
@@ -175,6 +201,33 @@ async function updateNoteDb(note) {
         method: "PUT",
         body: JSON.stringify(note)
     });
+
+}
+
+async function getAllNotesDbSortedByTitle() {
+
+    let result = await fetch("/rest/getNotesOrderByTitle");
+    notes = await result.json();
+
+    displayList();
+
+}
+
+async function getAllNotesDbSortedByDateAsc() {
+
+    let result = await fetch("/rest/getNotesOrderByLastUpdateAsc");
+    notes = await result.json();
+
+    displayList();
+
+}
+
+async function getAllNotesDbSortedByDateDesc() {
+
+    let result = await fetch("/rest/getNotesOrderByLastUpdateDesc");
+    notes = await result.json();
+
+    displayList();
 
 }
 
