@@ -109,7 +109,7 @@ background-color: #bbbbbb14;
 
 
 .home-note-description {
-    width: 500px;
+    width: 550px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -234,9 +234,9 @@ background-color: black;
 }
 
 #sort-choice{
-    position: absolute;
-    left: 200px;
-    top: 119px;
+    position: relative;
+    left: 165px;
+    top: 29px;
     font-size: medium;
 }
 
@@ -257,6 +257,21 @@ textarea{
 width: 500px;
 }
 
+.delete-button{
+    color: rgb(165, 0, 0);
+    background-color: white;
+    position: absolute;
+    left: 574px;
+    top: 12px;
+    border: none;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.delete-button:hover{
+    color: rgb(255, 0, 0);
+}
+
 #add-button{
 background-color: #b4bab181; 
 border: none; 
@@ -273,9 +288,6 @@ background-color: #b4bab1d2;
 cursor: pointer;
 }
 
-#save-button{
-    left: ; ; 
-}
 
 #title-input{
 
@@ -312,8 +324,22 @@ font-size: 16px;
 
 
 .single-note-description{
-    /* width: 500px; */
+    /* width: 550px; */
     white-space: break-spaces;
     /* overflow: hidden; */
     /* text-overflow: ellipsis; */
+}
+
+.list-dates{
+    float: right;
+    color: #636e6cad;
+    padding-top: 6px;
+
+}
+
+.single-note-date{
+    color: #636e6cad;
+    position: absolute;
+    left: 397px;
+    padding-top: 6px;
 }

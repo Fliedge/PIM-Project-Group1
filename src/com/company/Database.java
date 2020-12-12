@@ -140,11 +140,11 @@ public class Database {
     }
 
     // Delete note in database
-    public void deleteNote(Note note) {
+    public void deleteNote(int id) {
         String query = "DELETE FROM notes WHERE id = ?;";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, note.getId());
+            stmt.setInt(1, id);
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

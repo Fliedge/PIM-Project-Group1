@@ -100,7 +100,8 @@ function displayList() {
                 <span class="note-click">
                     <section class="home-note-columns">
                         <div class="home-column">
-                            <h2 class="home-note-title">${note.title}</h2><br>
+                        <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
+                        <h2 class="home-note-title">${note.title}</h2><br>
                             <p class="home-note-description">${note.description}</p>
                         </div>
                     </section>
@@ -115,6 +116,7 @@ function displayList() {
             <span class="note-click">
                 <section class="home-note-columns">
                     <div class="home-column">
+                        <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
                         <h2 class="home-note-title">${note.title}</h2><br>
                         <p class="home-note-description">${note.description}</p>
                     </div>
@@ -141,8 +143,11 @@ function showSingleNote() {
             <span class="single-note-click">
                 <section onclick="displayList()" class="single-note-columns">
                     <div class="home-column">
+                    <h6 class="single-note-date">last update: ${singleNote.lastUpdate}</h6>
+                        <button onclick="deleteNoteDb()" class="delete-button"><strong>X</strong></button>
+
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <pre class="single-note-description">${singleNote.description}</pre>
+                        <p class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
@@ -174,12 +179,14 @@ async function getSingleNoteDb(note) {
 
 }
 
-async function deleteNoteDb(note) {
+async function deleteNoteDb() {
 
-    let result = await fetch("/rest/notes/id", {
-        method: "DELETE",
+    let result = await fetch("/rest/notes/" + singleNote.id, {
+        method: "DELETE", 
         BODY: JSON.stringify()
     });
+
+    location.reload();
 
 }
 

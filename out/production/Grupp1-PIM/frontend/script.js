@@ -11,7 +11,6 @@ function findNoteId() {
     for (let i = 0; i < allNotes.length; i++) {
         $(allNotes[i]).click(function () {
             getSingleNoteDb(notes[i])
-            // showSingleNote(notes[i])
         });
     }
 
@@ -47,10 +46,7 @@ function showSingleNoteForEdit() {
 
     let list = $(".home-page-all-list");
     list.empty();
-    console.log(singleNote)
     
-
-
     list.append(`
     <form action="submit">
             
@@ -69,10 +65,6 @@ function showSingleNoteForEdit() {
     $("#edit-title-input").val(singleNote.title);
     $("#edit-description-input").val(singleNote.description);
 
-    // let editButton = $("update-button");
-
-
-    
 }
 
 function editNote() {
@@ -108,7 +100,8 @@ function displayList() {
                 <span class="note-click">
                     <section class="home-note-columns">
                         <div class="home-column">
-                            <h2 class="home-note-title">${note.title}</h2><br>
+                        <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
+                        <h2 class="home-note-title">${note.title}</h2><br>
                             <p class="home-note-description">${note.description}</p>
                         </div>
                     </section>
@@ -123,6 +116,7 @@ function displayList() {
             <span class="note-click">
                 <section class="home-note-columns">
                     <div class="home-column">
+                        <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
                         <h2 class="home-note-title">${note.title}</h2><br>
                         <p class="home-note-description">${note.description}</p>
                     </div>
@@ -147,10 +141,13 @@ function showSingleNote() {
         <div class="home-wrapper">
         <div id="home-list">
             <span class="single-note-click">
-                <section class="single-note-columns">
+                <section onclick="displayList()" class="single-note-columns">
                     <div class="home-column">
+                    <h6 class="single-note-date">last update: ${singleNote.lastUpdate}</h6>
+                        <button onclick="deleteNoteDb()" class="delete-button"><strong>X</strong></button>
+
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <pre class="single-note-description">${singleNote.description}</pre>
+                        <p class="single-note-description">${singleNote.description}</p>
                     </div>
                 </section>
             </span><br>
@@ -158,12 +155,9 @@ function showSingleNote() {
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
-        </div>
-        
+        </div>  
     `)
-
 }
-
 
 
 // DB functions
@@ -185,19 +179,18 @@ async function getSingleNoteDb(note) {
 
 }
 
-async function deleteNoteDb(note) {
+async function deleteNoteDb() {
 
-    let result = await fetch("/rest/notes/id", {
-        method: "DELETE",
+    let result = await fetch("/rest/notes/" + singleNote.id, {
+        method: "DELETE", 
         BODY: JSON.stringify()
     });
+
+    location.reload();
 
 }
 
 async function createNoteDb(note) {
-
-    console.log(note)
-
 
     let result = await fetch("/rest/notes", {
         method: "POST",
@@ -214,7 +207,8 @@ async function updateNoteDb(note) {
         body: JSON.stringify(note)
     });
 
-    getAllNotesDb();
+    // getAllNotesDb();
+    location.reload()
 
 }
 

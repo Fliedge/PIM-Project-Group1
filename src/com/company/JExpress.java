@@ -70,10 +70,26 @@ public class JExpress {
         });
 
         app.delete("/rest/notes/:id", (request, response) -> {
-            Note note = (Note) request.getBody(Note.class);
-            db.deleteNote(note);
 
+            int id = 0;
+            try {
+                id = Integer.parseInt(request.getParam("id"));
+                System.out.println(id);
+
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(id);
+            db.deleteNote(id);
+            response.json(id);
         });
+//        app.delete("/rest/notes/delete", (request, response) -> {
+//            Note note = (Note) request.getBody(Note.class);
+//
+//            db.deleteNote(note);
+//
+//        });
 
         try {
             app.use(Middleware.statics(Paths.get("src/frontend").toString()));

@@ -72,14 +72,17 @@ a.menu_links {
     top: 57px;
 }
 
+
+        /* toggle denna!!! */
+
+
 .home-note-columns{
 
+     
     flex: 1;
     border: 1px solid gray;
     /* margin: 2px; */
     padding: 10px;
-    
-    
 
     display: flex;
     flex-flow: row wrap;
@@ -106,10 +109,15 @@ background-color: #bbbbbb14;
 
 
 .home-note-description {
-    width: 500px;
+    width: 550px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+.single-note-click:hover{
+    cursor: pointer;
 }
 
 
@@ -227,8 +235,9 @@ background-color: black;
 
 #sort-choice{
     position: absolute;
-    left: 200px;
-    top: 100px;
+    left: 589px;
+    top: 158px;
+    font-size: medium;
 }
 
 
@@ -246,6 +255,21 @@ padding-bottom: 7px;
 
 textarea{
 width: 500px;
+}
+
+.delete-button{
+    color: rgb(165, 0, 0);
+    background-color: white;
+    position: absolute;
+    left: 578px;
+    top: 6px;
+    border: none;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.delete-button:hover{
+    color: rgb(255, 0, 0);
 }
 
 #add-button{
@@ -303,8 +327,20 @@ font-size: 16px;
 
 
 .single-note-description{
-    /* width: 500px; */
+    /* width: 550px; */
     white-space: break-spaces;
     /* overflow: hidden; */
     /* text-overflow: ellipsis; */
+}
+
+.list-dates{
+    float: right;
+    color: #636e6cad;
+
+}
+
+.single-note-date{
+    color: #636e6cad;
+    position: absolute;
+    left: 397px;
 }
