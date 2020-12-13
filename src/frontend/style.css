@@ -1,7 +1,9 @@
+/* General */
+
 *{
-    padding: 0%;
     margin: 0%;
     font-family: 'Roboto', sans-serif;
+    padding: 0%;
 }
 
 header{
@@ -16,6 +18,20 @@ li{
 body { 
     font-family: 'Roboto', sans-serif;
     color: #666;
+}
+
+.list-dates{
+    float: right;
+    color: #636e6cad;
+    padding-top: 6px;
+    
+}
+
+.single-note-date{
+    color: #636e6cad;
+    position: absolute;
+    left: 397px;
+    padding-top: 6px;
 }
 
 /* Nav-bar */
@@ -51,62 +67,32 @@ a.menu_links {
 }
 
 
-/* home-page */
+/* box styling for notes */
+
+.note-click{
+    cursor: pointer;
+}
 
 .home-wrapper {
-
     width: 600px;
-
     position: relative;
     left: 202px;
-    top: 57px;
-
+    top: 57px; 
 }
-
-.single-home-wrapper{
-    width: 600px;
-    height: auto;
-
-    position: relative;
-    left: 202px;
-    top: 57px;
-}
-
-
-        /* toggle denna!!! */
-
 
 .home-note-columns{
-
-     
     flex: 1;
     border: 1px solid gray;
     /* margin: 2px; */
     padding: 10px;
-
+    
     display: flex;
     flex-flow: row wrap;
     margin: 5px 0;
-    margin-bottom: 9px;
-
+    margin-bottom: 9px;   
 }
 
-.single-note-columns{
-    flex: 1;
-    border: 1px solid gray;
-    /* margin: 2px; */
-    padding: 10px;
-
-    display: flex;
-    flex-flow: row wrap;
-    margin: 5px 0;
-    margin-bottom: 9px;
-}
-
-.home-note-columns:hover{
-background-color: #bbbbbb14;
-}
-
+/* Styling for notes on homepage */
 
 .home-note-description {
     width: 550px;
@@ -115,117 +101,11 @@ background-color: #bbbbbb14;
     text-overflow: ellipsis;
 }
 
-
-.single-note-click:hover{
-    cursor: pointer;
+.home-note-columns:hover{
+    background-color: #bbbbbb14;
 }
 
-
-
-
-
-
-#add-files-button{
-background-color: #b4bab181; 
-border: none; 
-border-radius: 3px; 
-color: #333;
-padding: 7px 26px;
-font-size: 15px;
-}
-
-#add-image-button:hover{
-background-color: #b4bab1d2; 
-cursor: pointer;
-}
-
-#add-files-button:hover{
-background-color: #b4bab1d2; 
-cursor: pointer;
-}
-
-#add-image-button{
-background-color: #b4bab181; 
-border: none; 
-border-radius: 3px; 
-color: #333;
-padding: 7px 15px; 
-font-size: 15px;
-position: absolute;
-left: -1px;
-}
-
-#update-button{
-    background-color: #b4bab181;
-    border: none;
-    border-radius: 3px;
-    color: #333;
-    padding: 7px 38px;
-    font-size: 15px;
-    position: relative;
-    left: 500px;
-
-}
-
-#edit-button{
-    background-color: #b4bab181;
-    border: none;
-    border-radius: 3px;
-    color: #333;
-    padding: 7px 41px;
-    font-size: 15px;
-    position: relative;
-    left: 492px;
-}
-
-#edit-button:hover{
-    background-color: #b4bab1d2; 
-    cursor: pointer;
-    }
-
-#edit-image-button{
-    background-color: #b4bab181; 
-    border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 15px; 
-    font-size: 15px;
-    position: absolute;
-    left: -1px;
-}
-
-#edit-image-button:hover{
-    background-color: #b4bab1d2; 
-    cursor: pointer;
-    }
-
-#edit-files-button{
-    background-color: #b4bab181; 
-    border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 26px;
-    font-size: 15px;
-}
-
-#edit-files-button:hover{
-    background-color: #b4bab1d2; 
-    cursor: pointer;
-}
-
-#update-button:hover{
-    background-color: #b4bab1d2; 
-    cursor: pointer;
-}
-
-.note-click{
-cursor: pointer;
-}
-
-.note-click:hover{
-background-color: black;
-
-}
+        /* Misc */
 
 .title{
     position: relative;
@@ -242,104 +122,33 @@ background-color: black;
 
 
 form{
-display: inline-block;
-position: relative;
-left: 202px;
-top: 57px;
+    display: inline-block;
+    position: relative;
+    left: 202px;
+    top: 57px;
 }
 
 h2{
-color: #636E6C;
-padding-bottom: 7px;
+    color: #636E6C;
+    padding-bottom: 7px;
 }
 
 textarea{
-width: 500px;
-}
-
-.delete-button{
-    color: rgb(165, 0, 0);
-    background-color: white;
-    position: absolute;
-    left: 574px;
-    top: 12px;
-    border: none;
-    font-size: larger;
-    cursor: pointer;
-}
-
-.delete-button:hover{
-    color: rgb(255, 0, 0);
-}
-
-#add-button{
-background-color: #b4bab181; 
-border: none; 
-border-radius: 3px; 
-color: #333;
-padding: 7px 32px; 
-font-size: 15px;
-position: relative;
-left: 82%;
-}
-
-#add-button:hover{
-background-color: #b4bab1d2; 
-cursor: pointer;
-}
-
-
-#title-input{
-
-padding:5px; 
-width: 300px;
-}
-
-#description-input{
-
-size: fixed;
-position: relative;
-height: 300px;
-width: 600px;
-padding:5px; 
-}
-
-
-#edit-title-input{
-    padding:5px; 
-    width: 300px;
-    
-}
-
-#edit-description-input{
-    size: fixed;
-position: relative;
-height: 300px;
-width: 600px;
-padding:5px;
-font-size: 16px;
+    width: 500px;
 }
 
 
 
 
-.single-note-description{
-    /* width: 550px; */
-    white-space: break-spaces;
-    /* overflow: hidden; */
-    /* text-overflow: ellipsis; */
-}
 
-.list-dates{
-    float: right;
-    color: #636e6cad;
-    padding-top: 6px;
 
-}
 
-.single-note-date{
-    color: #636e6cad;
-    position: absolute;
-    left: 397px;
-    padding-top: 6px;
-}
+
+
+
+
+
+
+
+
+

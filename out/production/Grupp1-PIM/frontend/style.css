@@ -234,9 +234,9 @@ background-color: black;
 }
 
 #sort-choice{
-    position: absolute;
-    left: 589px;
-    top: 158px;
+    position: relative;
+    left: 165px;
+    top: 29px;
     font-size: medium;
 }
 
@@ -261,8 +261,8 @@ width: 500px;
     color: rgb(165, 0, 0);
     background-color: white;
     position: absolute;
-    left: 578px;
-    top: 6px;
+    left: 574px;
+    top: 12px;
     border: none;
     font-size: larger;
     cursor: pointer;
@@ -288,9 +288,6 @@ background-color: #b4bab1d2;
 cursor: pointer;
 }
 
-#save-button{
-    left: ; ; 
-}
 
 #title-input{
 
@@ -336,6 +333,7 @@ font-size: 16px;
 .list-dates{
     float: right;
     color: #636e6cad;
+    padding-top: 6px;
 
 }
 
@@ -343,4 +341,5 @@ font-size: 16px;
     color: #636e6cad;
     position: absolute;
     left: 397px;
+    padding-top: 6px;
 }
