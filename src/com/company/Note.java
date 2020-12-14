@@ -8,6 +8,8 @@ public class Note {
     private String title;
     private String description;
     private String lastUpdate;
+    private AddedImage addedImage;
+    private AddedFile addedFile;
 
 
     public Note() {
@@ -67,6 +69,22 @@ public class Note {
 
     public void setLastUpdate(String lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public AddedImage getAddedImage() {
+        return addedImage;
+    }
+
+    public void setAddedImage(AddedImage addedImage) {
+        this.addedImage = addedImage;
+    }
+
+    public AddedFile getAddedFile() {
+        return addedFile;
+    }
+
+    public void setAddedFile(AddedFile addedFile) {
+        this.addedFile = addedFile;
     }
 
     @Override
