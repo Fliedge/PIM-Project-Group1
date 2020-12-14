@@ -29,8 +29,9 @@
         <li><textarea id="create-description-input" placeholder="Description..."></textarea></li><br>
 
         <button onclick="submitNote()" id="add-button">Create</button>
-        <button onclick="addImageToNote()" id="add-image-button">Add images</button>
-        <button onclick="addFileToNote()" id="add-files-button">Add files</button>
+        <h4 id="add-image-button">Add files: </h4>
+        <button onclick="addFileToNote(event)" id="add-files-button">Add files</button>
+        <input type="file" accept="image/*" placeholder="select image" id="input-image">
 
 
     </form>
