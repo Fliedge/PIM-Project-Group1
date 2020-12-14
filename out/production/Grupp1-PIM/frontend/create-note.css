@@ -1,0 +1,63 @@
+#create-description-input{
+    
+    size: fixed;
+    position: relative;
+    height: 300px;
+    width: 600px;
+    padding:5px; 
+}
+
+#create-title-input{
+    
+    padding:5px; 
+    width: 300px;
+}
+
+/* Buttons */
+
+#add-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 32px; 
+    font-size: 15px;
+    position: relative;
+    left: 82%;
+}
+
+#add-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+
+
+#add-files-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 26px;
+    font-size: 15px;
+}
+        
+#add-files-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+        
+#add-image-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 15px; 
+    font-size: 15px;
+    position: absolute;
+    left: -1px;
+}
+        
+#add-image-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}

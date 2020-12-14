@@ -1,0 +1,95 @@
+        /* Single note styling */
+
+.single-note-click:hover{
+    cursor: pointer;
+}
+
+.single-home-wrapper{
+    width: 600px;
+    height: auto;
+    
+    position: relative;
+    left: 202px;
+    top: 57px;
+}
+
+.single-note-columns{
+    flex: 1;
+    border: 1px solid gray;
+    padding: 10px;    
+    display: flex;
+    flex-flow: row wrap;
+    margin: 5px 0;
+    margin-bottom: 9px;
+}
+
+.single-note-description{
+    white-space: break-spaces;
+}
+
+
+
+/* Buttons */
+
+
+#edit-button{
+    background-color: #b4bab181;
+    border: none;
+    border-radius: 3px;
+    color: #333;
+    padding: 7px 41px;
+    font-size: 15px;
+    position: relative;
+    left: 492px;
+}
+
+#edit-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+
+#add-files-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 26px;
+    font-size: 15px;
+}
+
+#add-files-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+
+#add-image-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 15px; 
+    font-size: 15px;
+    position: absolute;
+    left: -1px;
+}
+
+#add-image-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+
+.delete-button{
+    color: rgb(165, 0, 0);
+    background-color: white;
+    position: absolute;
+    left: 574px;
+    top: 12px;
+    border: none;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.delete-button:hover{
+    color: rgb(255, 0, 0);
+}
+
