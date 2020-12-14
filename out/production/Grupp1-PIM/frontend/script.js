@@ -20,8 +20,8 @@ function findNoteId() {
 
 function submitNote() {
 
-    let titleInput = $("#title-input").val();
-    let descriptionInput = $("#description-input").val();
+    let titleInput = $("#create-title-input").val();
+    let descriptionInput = $("#create-description-input").val();
 
     if (titleInput.length >= 0) {
 
@@ -35,37 +35,13 @@ function submitNote() {
         alert("Title needs to be added");
     }
 
-    $("#title-input").val(singleNote.title);
-    $("#description-input").val("");
+    $("#create-title-input").val("");
+    $("#create-description-input").val("");
 
 }
 
 // Edit note
 
-function showSingleNoteForEdit() {
-
-    let list = $(".home-page-all-list");
-    list.empty();
-    
-    list.append(`
-    <form action="submit">
-            
-    <h2>Edit Note</h2>
-   
-    <li><input type="text" id="edit-title-input" value=><br></li><br>
-    <li><textarea id="edit-description-input"></textarea></li><br>
-
-    <button onclick="editNote()" id="update-button">Save</button>
-    <button onclick="addImageToNote()" id="add-image-button">Add images</button>
-    <button onclick="addFileToNote()" id="add-files-button">Add files</button>
-   
-    </form>
-    `)
-
-    $("#edit-title-input").val(singleNote.title);
-    $("#edit-description-input").val(singleNote.description);
-
-}
 
 function editNote() {
 
@@ -155,8 +131,33 @@ function showSingleNote() {
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
-        </div>  
+        </div>
     `)
+}
+
+function showSingleNoteForEdit() {
+
+    let list = $(".home-page-all-list");
+    list.empty();
+    
+    list.append(`
+    <form action="submit">
+            
+    <h2>Edit Note</h2>
+   
+        <li><input type="text" id="edit-title-input" value=><br></li><br>
+        <li><textarea id="edit-description-input"></textarea></li><br>
+
+        <button onclick="editNote()" id="save-button">Save</button>
+        <button onclick="addImageToNote()" id="add-image-button">Add images</button>
+        <button onclick="addFileToNote()" id="add-files-button">Add files</button>
+   
+    </form>
+    `)
+
+    $("#edit-title-input").val(singleNote.title);
+    $("#edit-description-input").val(singleNote.description);
+
 }
 
 
@@ -207,7 +208,6 @@ async function updateNoteDb(note) {
         body: JSON.stringify(note)
     });
 
-    // getAllNotesDb();
     location.reload()
 
 }

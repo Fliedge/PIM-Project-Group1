@@ -26,10 +26,10 @@
     left: 82%;
 }
 
-/* #add-button:hover{ */
-    /* background-color: #b4bab1d2; 
+#add-button:hover{
+    background-color: #b4bab1d2; 
     cursor: pointer;
-} */
+}
 
 
 #add-files-button{
@@ -47,7 +47,7 @@
 }
         
 #add-image-button{
-    /* background-color: #b4bab181;  */
+    background-color: #b4bab181; 
     border: none; 
     border-radius: 3px; 
     color: #333;
@@ -57,20 +57,7 @@
     left: -1px;
 }
         
-/* #add-image-button:hover{ */
-    /* background-color: #b4bab1d2; 
+#add-image-button:hover{
+    background-color: #b4bab1d2; 
     cursor: pointer;
-} */
-
-/* #input-image::-webkit-file-upload-button {
-    /* visibility: hidden; */
-    /* border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 15px; 
-    font-size: 15px;
-} */
-
-/* #input-image::before{
-    
-} */ 
+}

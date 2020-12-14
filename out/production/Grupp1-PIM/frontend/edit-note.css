@@ -1,0 +1,67 @@
+        /* Edit input styling */
+
+#edit-title-input{
+    width: 300px;
+    padding:5px; 
+    
+}
+
+#edit-description-input{
+    size: fixed;
+    position: relative;
+    height: 300px;
+    width: 600px;
+    padding:5px;
+    font-size: 16px;
+}
+
+/* Buttons */
+
+#save-button{
+    background-color: #b4bab181;
+    border: none;
+    border-radius: 3px;
+    color: #333;
+    padding: 7px 38px;
+    font-size: 15px;
+    position: relative;
+    left: 500px;
+    
+}
+
+#save-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+
+
+#edit-image-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 15px; 
+    font-size: 15px;
+    position: absolute;
+    left: -1px;
+}
+
+#edit-image-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+
+#edit-files-button{
+    background-color: #b4bab181; 
+    border: none; 
+    border-radius: 3px; 
+    color: #333;
+    padding: 7px 26px;
+    font-size: 15px;
+}
+
+#edit-files-button:hover{
+    background-color: #b4bab1d2; 
+    cursor: pointer;
+}
+

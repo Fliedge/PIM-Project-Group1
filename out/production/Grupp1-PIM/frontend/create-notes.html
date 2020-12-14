@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="create-note.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -24,8 +25,8 @@
     <form action="submit">
 
 
-        <li><input type="text" placeholder="Title..." id="title-input"></li><br>
-        <li><textarea id="description-input" placeholder="Description..."></textarea></li><br>
+        <li><input type="text" placeholder="Title..." id="create-title-input"></li><br>
+        <li><textarea id="create-description-input" placeholder="Description..."></textarea></li><br>
 
         <button onclick="submitNote()" id="add-button">Create</button>
         <button onclick="addImageToNote()" id="add-image-button">Add images</button>

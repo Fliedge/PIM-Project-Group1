@@ -1,5 +1,6 @@
 let singleNote = {};
 let notes = [];
+let image = "";
 
 getAllNotesDb();
 
@@ -20,6 +21,7 @@ function findNoteId() {
 
 function submitNote() {
 
+
     let titleInput = $("#create-title-input").val();
     let descriptionInput = $("#create-description-input").val();
 
@@ -27,7 +29,8 @@ function submitNote() {
 
         note = {
             title: titleInput,
-            description: descriptionInput
+            description: descriptionInput,
+            imageUrl: image
         };
         createNoteDb(note);
     }
@@ -35,17 +38,44 @@ function submitNote() {
         alert("Title needs to be added");
     }
 
-    $("#create-title-input").val(singleNote.title);
+    $("#create-title-input").val("");
     $("#create-description-input").val("");
+
+}
+function addImageToNote(event) {
+
+    event.preventDefault();
+
+    let file = $("#input-image").files;
+    let formData = new FormData();
+
+    formData.append("img", file, file.name);
+
+    addImage(formData);
+
+}
+
+// function addFileToNote(event) {
+
+//     event.preventDefault();
+
+//     let files = $("#input-file").files;
+//     let formData = new FormData();
+
+//     formData.append("files", file, file.name);
+
+//     addImage(formData);
+
+// }
+
+function addFileToNote() {
 
 }
 
 // Edit note
 
 
-
 function editNote() {
-
 
     let noteToEdit = {
 
@@ -64,6 +94,8 @@ function displayList() {
     let list = $(".home-page-all-list");
     let i = 0;
     list.empty();
+
+ 
 
     for (note of notes) {
 
@@ -103,7 +135,7 @@ function displayList() {
         }
     }
     findNoteId();
-
+  
 }
 
 function showSingleNote() {
@@ -132,7 +164,7 @@ function showSingleNote() {
             <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
             <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
         </div>
-        </div>  
+        </div>
     `)
 }
 
@@ -203,15 +235,23 @@ async function createNoteDb(note) {
 
 async function updateNoteDb(note) {
 
-
     let result = await fetch("/rest/notes/id", {
         method: "PUT",
         body: JSON.stringify(note)
     });
 
-    // getAllNotesDb();
     location.reload()
+}
 
+async function addImage(formData) {
+   
+    let uploadResult = await fetch('/api/file-upload', {
+        method: 'POST',
+        body: formData
+    });
+
+    imageUrl = await uploadResult.text();
+    
 }
 
 // Sorting functions
@@ -254,6 +294,7 @@ async function getAllNotesDbSortedByDateDesc() {
     displayList();
 
 }
+
 
 
 
