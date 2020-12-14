@@ -1,0 +1,154 @@
+/* General */
+
+*{
+    margin: 0%;
+    font-family: 'Roboto', sans-serif;
+    padding: 0%;
+}
+
+header{
+    background-color: #A8BAB7;
+    height: 100px;
+}
+
+li{
+    list-style-type: none;
+}
+
+body { 
+    font-family: 'Roboto', sans-serif;
+    color: #666;
+}
+
+.list-dates{
+    float: right;
+    color: #636e6cad;
+    padding-top: 6px;
+    
+}
+
+.single-note-date{
+    color: #636e6cad;
+    position: absolute;
+    left: 397px;
+    padding-top: 6px;
+}
+
+/* Nav-bar */
+
+nav{
+    position: absolute;
+    display: inline-block;
+    background-color: #bbbbbb44;
+    padding-bottom: 100%;
+}
+
+#nav-ul{
+    padding-top: 33px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.nav-list{
+    font-size: large;
+    padding-bottom: 14px;
+}
+
+a{
+    color: #676E63;
+    text-decoration: none;
+}
+a:hover{
+    text-shadow: -.25px -.25px 0 black, 
+    .25px .25px black;
+}
+a.menu_links {
+    cursor: pointer;
+}
+
+
+/* box styling for notes */
+
+.note-click{
+    cursor: pointer;
+}
+
+.home-wrapper {
+    width: 600px;
+    position: relative;
+    left: 202px;
+    top: 57px; 
+}
+
+.home-note-columns{
+    flex: 1;
+    border: 1px solid gray;
+    /* margin: 2px; */
+    padding: 10px;
+    
+    display: flex;
+    flex-flow: row wrap;
+    margin: 5px 0;
+    margin-bottom: 9px;   
+}
+
+/* Styling for notes on homepage */
+
+.home-note-description {
+    width: 550px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home-note-columns:hover{
+    background-color: #bbbbbb14;
+}
+
+        /* Misc */
+
+.title{
+    position: relative;
+    left: 200px;
+    top: 56px;
+}
+
+#sort-choice{
+    position: relative;
+    left: 165px;
+    top: 29px;
+    font-size: medium;
+}
+
+
+form{
+    display: inline-block;
+    position: relative;
+    left: 202px;
+    top: 57px;
+}
+
+h2{
+    color: #636E6C;
+    padding-bottom: 7px;
+}
+
+textarea{
+    width: 500px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
