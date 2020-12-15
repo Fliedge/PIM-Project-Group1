@@ -63,15 +63,26 @@ public class JExpress {
             response.send();
         });
 
-        app.post("/api/file-upload",(request, response) -> {
+        app.post("/api/images-upload",(request, response) -> {
             String imageUrl = null;
             try {
-                List<FileItem> files = request.getFormData("files");
-                imageUrl = db.uploadImage(files.get(0));
+                List<FileItem> images = request.getFormData("images");
+                imageUrl = db.uploadImage(images.get(0));
             } catch (Exception e) {
                 e.printStackTrace();
             }
             response.send(imageUrl);
+        });
+
+        app.post("/api/file-upload", (request, response) -> {
+            String fileUrl = null;
+            try {
+                List<FileItem> files = request.getFormData("files");
+                fileUrl = db.uploadFile(files.get(0));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            response.send(fileUrl);
         });
 
         app.put("/rest/notes/id", (request, response) -> {

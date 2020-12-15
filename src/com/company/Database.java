@@ -198,6 +198,18 @@ public class Database {
         }
         return imageUrl;
     }
+
+    public String uploadFile(FileItem file) {
+        String fileUrl = "/files/" + file.getName();
+
+        try(var oStream = new FileOutputStream(Paths.get("src/frontend" + fileUrl).toString())) {
+            oStream.write(file.get());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return fileUrl;
+    }
 }
 
 
