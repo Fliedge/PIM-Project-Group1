@@ -187,7 +187,7 @@ public class Database {
     }
 
     public String uploadImage(FileItem image) {
-        String imageUrl = "/uploads/" + image.getName();
+        String imageUrl = "/images/" + image.getName();
 
         try(var oStream = new FileOutputStream(Paths.get("src/frontend" + imageUrl).toString())) {
 

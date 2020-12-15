@@ -21,7 +21,23 @@ function findNoteId() {
 
 // Send note functions
 
-function submitNote() {
+async function submitNote() {
+
+    let files = document.querySelector('input[type=file]').files;
+    let formData = new FormData();
+
+    for (let file of files){
+        formData.append("files", file, file.name);
+
+    }
+
+    let uploadResult = await fetch('/api/file-upload', {
+        method: 'POST',
+        body: formData
+    });
+
+
+    let imageUrl = await uploadResult.text();
 
 
     let titleInput = $("#create-title-input").val();
@@ -32,7 +48,7 @@ function submitNote() {
         note = {
             title: titleInput,
             description: descriptionInput,
-            // imageUrl: image
+            imageUrl: imageUrl
         };
         createNoteDb(note);
     }
