@@ -59,12 +59,15 @@ public class JExpress {
             Note note = (Note) request.getBody(Note.class);
 
 
+
+
             db.createNote(note);
             response.send();
         });
 
         app.post("/api/images-upload",(request, response) -> {
             String imageUrl = null;
+
             try {
                 List<FileItem> images = request.getFormData("images");
                 imageUrl = db.uploadImage(images.get(0));
@@ -76,6 +79,7 @@ public class JExpress {
 
         app.post("/api/file-upload", (request, response) -> {
             String fileUrl = null;
+
             try {
                 List<FileItem> files = request.getFormData("files");
                 fileUrl = db.uploadFile(files.get(0));

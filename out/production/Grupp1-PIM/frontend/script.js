@@ -21,6 +21,7 @@ function findNoteId() {
 // Send note functions
 async function submitNote() {
 
+
     let imageUrl = await uploadImage();
     let fileUrl = await uploadFile();
 
@@ -51,40 +52,52 @@ async function uploadImage() {
 
 
     let images = document.querySelector("#input-image").files;
-    let formData = new FormData();
 
-    for (let image of images) {
-        formData.append("images", image, image.name);
+    if (images.length > 0) {
+        let formData = new FormData();
 
+        for (let image of images) {
+            formData.append("images", image, image.name);
+
+        }
+
+        let uploadResult = await fetch('/api/images-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        imageUrl = await uploadResult.text();
+        return imageUrl;
     }
-
-    let uploadResult = await fetch('/api/images-upload', {
-        method: 'POST',
-        body: formData
-    });
-
-    imageUrl = await uploadResult.text();
-    return imageUrl;
+    // else {
+    //     return imageUrl = "";
+    // }
 }
 
 async function uploadFile() {
 
 
     let files = document.querySelector("#input-file").files;
-    let formData = new FormData();
 
-    for (let file of files) {
-        formData.append("files", file, file.name);
+    if (files.length > 0) {
 
+        let formData = new FormData();
+
+        for (let file of files) {
+            formData.append("files", file, file.name);
+
+        }
+        let uploadResult = await fetch('/api/file-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        fileUrl = await uploadResult.text();
+        return fileUrl;
     }
-
-    let uploadResult = await fetch('/api/file-upload', {
-        method: 'POST',
-        body: formData
-    });
-
-    fileUrl = await uploadResult.text();
-    return fileUrl;
+    // else {
+    //     return fileUrl = "";
+    // }
 }
 
 // Edit note
@@ -94,10 +107,10 @@ async function editNote() {
     let editImage = await uploadImage();;
     let editFile = await uploadFile();
 
-    if (editImage == ""){
+    if (editImage == "") {
         editImage = singleNote.imageUrl
     }
-    if (editFile == ""){
+    if (editFile == "") {
         editFile = singleNote.fileUrl
     }
 
@@ -193,13 +206,13 @@ function showSingleNote() {
     // <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
     // <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
 
-    if (singleNote.imageUrl != ""){
+    if (singleNote.imageUrl != "") {
         let box = $(".home-column")
         box.append(`
         <br><img src="${singleNote.imageUrl}" alt="">
         `)
     }
-    if (singleNote.fileUrl != ""){
+    if (singleNote.fileUrl != "") {
         let box = $(".home-column")
         box.append(`
         <br><a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
@@ -219,7 +232,7 @@ function showSingleNoteForEdit() {
    
         <li><input type="text" id="edit-title-input" value=><br></li><br>
         <li><textarea id="edit-description-input"></textarea></li><br>
-        <button class=""><strong>X</strong></button>
+        <button class="delete-image-button"><strong>X</strong></button>
         <ul id="image-li"></ul>
 
         <button onclick="editNote()" id="save-button">Save</button>
@@ -234,15 +247,15 @@ function showSingleNoteForEdit() {
     // <button onclick="addImageToNote()" id="add-image-button">Add images</button>
     // <button onclick="addFileToNote()" id="add-files-button">Add files</button>
     let imageList = $("image-li")
-    
+
     imageList.append(`
     <img src="${singleNote.imageUrl}">
         `)
 
     $("#edit-title-input").val(singleNote.title);
-    $("#edit-description-input").val(singleNote.description, );
+    $("#edit-description-input").val(singleNote.description,);
 
-    $("#delete-button").click(function () {
+    $(".delete-image-button").click(function () {
         let updateNote = {
             id: singleNote.id,
             title: singleNote.title,
@@ -251,12 +264,11 @@ function showSingleNoteForEdit() {
             fileUrl: singleNote.fileUrl
         }
         updateNoteDb(updateNote)
-        showSingleNoteForEdit();
-
+        event.preventDefault();
     });
 
 
-    
+
 }
 
 
