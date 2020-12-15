@@ -26,11 +26,6 @@
     left: 82%;
 }
 
-/* #add-button:hover{ */
-    /* background-color: #b4bab1d2; 
-    cursor: pointer;
-} */
-
 
 #add-files-button{
     background-color: #b4bab181; 
@@ -53,24 +48,17 @@
     color: #333;
     padding: 7px 15px; 
     font-size: 15px;
-    position: absolute;
+    position: relative;
     left: -1px;
+    top: -36px;
 }
+
+#add-image-title{
+    position: relative;
+    left: 10px;
+    top: -36px;
+    display: inline-block;
+}
+
+
         
-/* #add-image-button:hover{ */
-    /* background-color: #b4bab1d2; 
-    cursor: pointer;
-} */
-
-/* #input-image::-webkit-file-upload-button {
-    /* visibility: hidden; */
-    /* border: none; 
-    border-radius: 3px; 
-    color: #333;
-    padding: 7px 15px; 
-    font-size: 15px;
-} */
-
-/* #input-image::before{
-    
-} */ 
