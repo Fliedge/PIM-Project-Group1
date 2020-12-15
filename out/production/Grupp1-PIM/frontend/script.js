@@ -93,9 +93,6 @@ async function editNote() {
 
     let editImage = await uploadImage();;
     let editFile = await uploadFile();
-    console.log(editImage)
-    console.log("check")
-    
 
     if (editImage == ""){
         editImage = singleNote.imageUrl
@@ -188,11 +185,13 @@ function showSingleNote() {
                 </section>
             </span><br>
             <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
-            <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
-            <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
+           
         </div>
         </div>
     `)
+
+    // <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
+    // <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
 
     if (singleNote.imageUrl != ""){
         let box = $(".home-column")
@@ -203,7 +202,7 @@ function showSingleNote() {
     if (singleNote.fileUrl != ""){
         let box = $(".home-column")
         box.append(`
-        <a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
+        <br><a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
         `)
     }
 }
@@ -220,10 +219,11 @@ function showSingleNoteForEdit() {
    
         <li><input type="text" id="edit-title-input" value=><br></li><br>
         <li><textarea id="edit-description-input"></textarea></li><br>
+        <button class=""><strong>X</strong></button>
+        <ul id="image-li"></ul>
 
         <button onclick="editNote()" id="save-button">Save</button>
-        <button onclick="addImageToNote()" id="add-image-button">Add images</button>
-        <button onclick="addFileToNote()" id="add-files-button">Add files</button>
+  
 
         <input type="file" accept="image/*" placeholder="select image" id="input-image">
         <input type="file" accept=".pdf" placeholder="select file" id="input-file">
@@ -231,8 +231,30 @@ function showSingleNoteForEdit() {
     </form>
     `)
 
+    // <button onclick="addImageToNote()" id="add-image-button">Add images</button>
+    // <button onclick="addFileToNote()" id="add-files-button">Add files</button>
+    let imageList = $("image-li")
+    
+    imageList.append(`
+    <img src="${singleNote.imageUrl}">
+        `)
+
     $("#edit-title-input").val(singleNote.title);
-    $("#edit-description-input").val(singleNote.description);
+    $("#edit-description-input").val(singleNote.description, );
+
+    $("#delete-button").click(function () {
+        let updateNote = {
+            id: singleNote.id,
+            title: singleNote.title,
+            description: singleNote.description,
+            imageUrl: "",
+            fileUrl: singleNote.fileUrl
+        }
+        updateNoteDb(updateNote)
+        showSingleNoteForEdit();
+
+    });
+
 
     
 }
