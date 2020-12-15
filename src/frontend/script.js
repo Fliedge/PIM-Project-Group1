@@ -89,11 +89,20 @@ async function uploadFile() {
 
 // Edit note
 
-
 async function editNote() {
 
     let editImage = await uploadImage();;
     let editFile = await uploadFile();
+    console.log(editImage)
+    console.log("check")
+    
+
+    if (editImage == ""){
+        editImage = singleNote.imageUrl
+    }
+    if (editFile == ""){
+        editFile = singleNote.fileUrl
+    }
 
     let noteToEdit = {
 
@@ -188,7 +197,7 @@ function showSingleNote() {
     if (singleNote.imageUrl != ""){
         let box = $(".home-column")
         box.append(`
-        <img src="${singleNote.imageUrl}" alt="">
+        <br><img src="${singleNote.imageUrl}" alt="">
         `)
     }
     if (singleNote.fileUrl != ""){
@@ -225,6 +234,7 @@ function showSingleNoteForEdit() {
     $("#edit-title-input").val(singleNote.title);
     $("#edit-description-input").val(singleNote.description);
 
+    
 }
 
 
