@@ -116,12 +116,14 @@ public class Database {
 
     // Add new note into database
     public void createNote(Note note){
-        String query = "INSERT INTO notes (title, description, lastUpdate) VALUES (?,?, CURRENT_TIMESTAMP);";
+        String query = "INSERT INTO notes (title, description, lastUpdate, imageUrl, fileUrl) VALUES (?,?, CURRENT_TIMESTAMP,?,?);";
 
         try {
             PreparedStatement stmt =conn.prepareStatement(query);
             stmt.setString(1, changeTitleToCapitalLetterFirst(note.getTitle()));
             stmt.setString(2,note.getDescription());
+            stmt.setString(3,note.getImageUrl());
+            stmt.setString(4, note.getFileUrl());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -130,12 +132,14 @@ public class Database {
 
     // Update note in database
     public void updateNote(Note note) {
-        String query = "UPDATE notes SET title = ?, description =?, lastUpdate = CURRENT_TIMESTAMP WHERE id = ?;";
+        String query = "UPDATE notes SET title = ?, description =?, lastUpdate = CURRENT_TIMESTAMP, imageUrl = ?, fileUrl = ? WHERE id = ?;";
         try {
             PreparedStatement stmt= conn.prepareStatement(query);
             stmt.setString(1, changeTitleToCapitalLetterFirst(note.getTitle()));
             stmt.setString(2,note.getDescription());
-            stmt.setInt(3, note.getId());
+            stmt.setString(3, note.getImageUrl());
+            stmt.setString(4, note.getFileUrl());
+            stmt.setInt(5, note.getId());
             stmt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

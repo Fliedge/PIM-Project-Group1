@@ -8,35 +8,28 @@ public class Note {
     private String title;
     private String description;
     private String lastUpdate;
-    private AddedImage addedImage;
-    private AddedFile addedFile;
+    private String imageUrl;
+    private String fileUrl;
 
 
     public Note() {
     }
 
-    public Note(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    public Note(int id, String title, String description) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-    }
-
-    public Note(String title, String description, String lastUpdate) {
-        this.title = title;
-        this.description = description;
-        this.lastUpdate = lastUpdate;
-    }
-
-    public Note(int id, String title, String description, String lastUpdate) {
+    public Note(int id, String title, String description, String lastUpdate, String imageUrl, String fileUrl) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.lastUpdate = lastUpdate;
+        this.imageUrl = imageUrl;
+        this.fileUrl = fileUrl;
+    }
+
+    public Note(String title, String description, String lastUpdate, String imageUrl, String fileUrl) {
+        this.title = title;
+        this.description = description;
+        this.lastUpdate = lastUpdate;
+        this.imageUrl = imageUrl;
+        this.fileUrl = fileUrl;
     }
 
     public int getId() {
@@ -71,20 +64,20 @@ public class Note {
         this.lastUpdate = lastUpdate;
     }
 
-    public AddedImage getAddedImage() {
-        return addedImage;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setAddedImage(AddedImage addedImage) {
-        this.addedImage = addedImage;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public AddedFile getAddedFile() {
-        return addedFile;
+    public String getFileUrl() {
+        return fileUrl;
     }
 
-    public void setAddedFile(AddedFile addedFile) {
-        this.addedFile = addedFile;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
     @Override
@@ -93,9 +86,10 @@ public class Note {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", lastUpdate=" + lastUpdate +
+                ", lastUpdate='" + lastUpdate + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", fileUrl='" + fileUrl + '\'' +
                 '}';
     }
-
-    
 }
+
