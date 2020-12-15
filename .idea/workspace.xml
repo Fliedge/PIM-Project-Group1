@@ -19,17 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/company/AddedFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/AddedImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-notes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pim-grupp1.db" beforeDir="false" afterPath="$PROJECT_DIR$/pim-grupp1.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Note.java" afterDir="false" />
-    </list>
+    <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,6 +85,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="410" y="131" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607938251895">
@@ -105,10 +96,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="446" y="33" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1607940111738" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607940717549">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607975184744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607940717549" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607975184744" />
     <state width="1237" height="157" key="GridCell.Tab.0.bottom" timestamp="1607940719506">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
