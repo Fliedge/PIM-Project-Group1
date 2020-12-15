@@ -1,6 +1,5 @@
 let singleNote = {};
 let notes = [];
-// let image = "";
 
 
 
@@ -20,10 +19,58 @@ function findNoteId() {
 }
 
 // Send note functions
-
 async function submitNote() {
 
-    let files = document.querySelector('input[type=file]').files;
+    let imageUrl = await uploadImage();
+    let fileUrl = await uploadFile();
+
+
+    let titleInput = $("#create-title-input").val();
+    let descriptionInput = $("#create-description-input").val();
+
+    if (titleInput.length >= 0) {
+
+        note = {
+            title: titleInput,
+            description: descriptionInput,
+            imageUrl: imageUrl,
+            fileUrl: fileUrl
+        };
+        createNoteDb(note);
+    }
+    else {
+        alert("Title needs to be added");
+    }
+
+    $("#create-title-input").val("");
+    $("#create-description-input").val("");
+
+}
+
+async function uploadImage() {
+
+
+    let images = document.querySelector("#input-image").files;
+    let formData = new FormData();
+
+    for (let image of images){
+        formData.append("images", image, image.name);
+
+    }
+
+    let uploadResult = await fetch('/api/images-upload', {
+        method: 'POST',
+        body: formData
+    });
+
+    imageUrl = await uploadResult.text();
+    return imageUrl;
+}
+
+async function uploadFile() {
+
+
+    let files = document.querySelector("#input-file").files;
     let formData = new FormData();
 
     for (let file of files){
@@ -36,71 +83,25 @@ async function submitNote() {
         body: formData
     });
 
-
-    let imageUrl = await uploadResult.text();
-
-
-    let titleInput = $("#create-title-input").val();
-    let descriptionInput = $("#create-description-input").val();
-
-    if (titleInput.length >= 0) {
-
-        note = {
-            title: titleInput,
-            description: descriptionInput,
-            imageUrl: imageUrl
-        };
-        createNoteDb(note);
-    }
-    else {
-        alert("Title needs to be added");
-    }
-
-    $("#create-title-input").val("");
-    $("#create-description-input").val("");
-
-}
-function addImageToNote(event) {
-
-    event.preventDefault();
-
-    let file = $("#input-image").files;
-    let formData = new FormData();
-
-    formData.append("img", file, file.name);
-
-    addImage(formData);
-
-}
-
-// function addFileToNote(event) {
-
-//     event.preventDefault();
-
-//     let files = $("#input-file").files;
-//     let formData = new FormData();
-
-//     formData.append("files", file, file.name);
-
-//     addImage(formData);
-
-// }
-
-function addFileToNote() {
-
+    fileUrl = await uploadResult.text();
+    return fileUrl;
 }
 
 // Edit note
 
 
-function editNote() {
+async function editNote() {
+
+    let editImage = await uploadImage();;
+    let editFile = await uploadFile();
 
     let noteToEdit = {
 
         id: singleNote.id,
         title: $("#edit-title-input").val(),
-        description: $("#edit-description-input").val()
-
+        description: $("#edit-description-input").val(),
+        imageUrl: editImage,
+        fileUrl: editFile
     }
     updateNoteDb(noteToEdit)
 }
@@ -203,6 +204,9 @@ function showSingleNoteForEdit() {
         <button onclick="editNote()" id="save-button">Save</button>
         <button onclick="addImageToNote()" id="add-image-button">Add images</button>
         <button onclick="addFileToNote()" id="add-files-button">Add files</button>
+
+        <input type="file" accept="image/*" placeholder="select image" id="input-image">
+        <input type="file" accept=".txt" placeholder="select file" id="input-file">
    
     </form>
     `)
