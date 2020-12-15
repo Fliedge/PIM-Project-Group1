@@ -53,7 +53,7 @@ async function uploadImage() {
     let images = document.querySelector("#input-image").files;
     let formData = new FormData();
 
-    for (let image of images){
+    for (let image of images) {
         formData.append("images", image, image.name);
 
     }
@@ -73,7 +73,7 @@ async function uploadFile() {
     let files = document.querySelector("#input-file").files;
     let formData = new FormData();
 
-    for (let file of files){
+    for (let file of files) {
         formData.append("files", file, file.name);
 
     }
@@ -113,9 +113,6 @@ function displayList() {
     let list = $(".home-page-all-list");
     let i = 0;
     list.empty();
-    console.log(notes)
-
- 
 
     for (note of notes) {
 
@@ -155,7 +152,7 @@ function displayList() {
         }
     }
     findNoteId();
-  
+
 }
 
 function showSingleNote() {
@@ -177,6 +174,7 @@ function showSingleNote() {
 
                         <h2 class="single-note-title">${singleNote.title}</h2><br>
                         <p class="single-note-description">${singleNote.description}</p>
+
                     </div>
                 </section>
             </span><br>
@@ -186,13 +184,26 @@ function showSingleNote() {
         </div>
         </div>
     `)
+
+    if (singleNote.imageUrl != ""){
+        let box = $(".home-column")
+        box.append(`
+        <img src="${singleNote.imageUrl}" alt="">
+        `)
+    }
+    if (singleNote.fileUrl != ""){
+        let box = $(".home-column")
+        box.append(`
+        <a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
+        `)
+    }
 }
 
 function showSingleNoteForEdit() {
 
     let list = $(".home-page-all-list");
     list.empty();
-    
+
     list.append(`
     <form action="submit">
             
@@ -206,7 +217,7 @@ function showSingleNoteForEdit() {
         <button onclick="addFileToNote()" id="add-files-button">Add files</button>
 
         <input type="file" accept="image/*" placeholder="select image" id="input-image">
-        <input type="file" accept=".txt" placeholder="select file" id="input-file">
+        <input type="file" accept=".pdf" placeholder="select file" id="input-file">
    
     </form>
     `)
@@ -239,7 +250,7 @@ async function getSingleNoteDb(note) {
 async function deleteNoteDb() {
 
     let result = await fetch("/rest/notes/" + singleNote.id, {
-        method: "DELETE", 
+        method: "DELETE",
         BODY: JSON.stringify()
     });
 
@@ -267,14 +278,14 @@ async function updateNoteDb(note) {
 }
 
 async function addImage(formData) {
-   
+
     let uploadResult = await fetch('/api/file-upload', {
         method: 'POST',
         body: formData
     });
 
     imageUrl = await uploadResult.text();
-    
+
 }
 
 // Sorting functions
