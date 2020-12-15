@@ -19,6 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="">
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/com/company/AddedFile.java" beforeDir="false" />
@@ -35,6 +36,9 @@
 >>>>>>> Master
 >>>>>>> Master
     </list>
+=======
+    <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
