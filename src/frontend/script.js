@@ -1,6 +1,8 @@
 let singleNote = {};
 let notes = [];
-let image = "";
+// let image = "";
+
+
 
 getAllNotesDb();
 
@@ -21,6 +23,22 @@ function findNoteId() {
 
 function submitNote() {
 
+    let files = $("#input-image").files;
+    let formData = new FormData();
+
+    for (let file of files){
+        formData.append("files", file, file.name);
+
+    }
+
+    let uploadResult = await fetch('/api/file-upload', {
+        method: 'POST',
+        body: formData
+    });
+
+
+    let imageUrl = await uploadResult.text();
+
 
     let titleInput = $("#create-title-input").val();
     let descriptionInput = $("#create-description-input").val();
@@ -30,7 +48,7 @@ function submitNote() {
         note = {
             title: titleInput,
             description: descriptionInput,
-            imageUrl: image
+            imageUrl: imageUrl
         };
         createNoteDb(note);
     }
@@ -94,6 +112,7 @@ function displayList() {
     let list = $(".home-page-all-list");
     let i = 0;
     list.empty();
+    console.log(notes)
 
  
 
