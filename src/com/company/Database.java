@@ -2,7 +2,10 @@ package com.company;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import express.utils.Utils;
+import org.apache.commons.fileupload.FileItem;
 
+import java.io.FileOutputStream;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.List;
 
@@ -177,6 +180,19 @@ public class Database {
         temp[0] = newFirstLetter;
         String output = String.valueOf(temp);
         return output;
+    }
+
+    public String uploadImage(FileItem image) {
+        String imageUrl = "/uploads/" + image.getName();
+
+        try(var oStream = new FileOutputStream(Paths.get("src/frontend" + imageUrl).toString())) {
+
+            oStream.write(image.get());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return imageUrl;
     }
 }
 
