@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="" />
+    <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/com/company/AddedFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/AddedImage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Note.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +47,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Exempelprogram från föreläsningar/JavaExpress - Filhantering - codalong" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -92,10 +97,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="410" y="131" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1607938251895" />
-    <state x="446" y="33" key="#com.intellij.ide.util.MemberChooser" timestamp="1607940111738">
+    <state x="446" y="33" key="#com.intellij.ide.util.MemberChooser" timestamp="1608021276960">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="446" y="33" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1607940111738" />
+    <state x="446" y="33" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1608021276960" />
     <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607975184744">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
