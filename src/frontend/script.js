@@ -206,16 +206,30 @@ function editAttachment() {
 
     addImage.addEventListener("change", async () => {
         await addImageToNote();
-        showSingleNoteForEdit();
+        let imageList = $("#image-ul");
+        imageList.empty();
+        imageList.append(`
+            <strong id="delete-image">X</strong>
+            <img id="edit-note-image" src="${singleNote.imageUrl}">
+        `)
     })
 
     addFile.addEventListener("change", async () => {
         await addFileToNote();
-        showSingleNoteForEdit();
-    })
+        let fileList = $("#file-ul");
+        fileList.empty();
+        fileList.append(`
+            <li>
+                <strong id="delete-file">X</strong>
+                ${singleNote.fileUrl}
+            </li>
+        `)
+    });
 }
 
+
 function deleteAttachment() {
+
     $("#delete-image").click(async function () {
         let updateNote = {
             id: singleNote.id,
@@ -226,7 +240,7 @@ function deleteAttachment() {
         }
         await updateNoteDb(updateNote)
         await getSingleNoteDb(singleNote);
-        showSingleNoteForEdit();
+        
     });
 
     $("#delete-file").click(async function () {
@@ -239,10 +253,7 @@ function deleteAttachment() {
         }
         await updateNoteDb(updateNote)
         await getSingleNoteDb(singleNote);
-        showSingleNoteForEdit();
     });
-
-
 }
 
 async function addImageToNote() {
