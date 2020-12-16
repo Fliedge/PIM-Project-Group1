@@ -1,3 +1,5 @@
+let img = "";
+
 async function submitNote() {
 
     let imageUrl = await uploadImage();
@@ -93,33 +95,37 @@ function addAttachment() {
 
 
 
-    addImage.addEventListener("click", () => {
+    addImage.addEventListener("change", async () => {
         let ull = $(".image-ul");
         ull.empty();
-        addImage.addEventListener("mouseout", async function () {
-            let img = await uploadImage();
-            ull.append(`
-                <strong id="delete-image">X</strong>
-                <img id="edit-note-image" src="${img}">
+        img = await uploadImage();
+        ull.append(`
+        
+            <strong onclick="deleteImageFromNote()" id="delete-create-image">X</strong>
+            <img id="edit-note-image" src="${img}">
             `)
-            return;
-        }, {once: true})
-    }
-    );
+    });
 
-    addFile.addEventListener("click", () => {
-        addFile.addEventListener("mouseout", async function () {
-            await addFileToNote();
+    // addFile.addEventListener("click", () => {
+    //     await addFileToNote();
 
-        }, {once: true})
-    }
-    );
+    // });
+}
+
+function deleteImageFromNote() {
+
+    let ull = $(".image-ul");
+    ull.empty();
+
+    $("#input-image").val("");
+
+
 }
 
 
 function displayPage() {
 
-    let page = $("form")
+    let page = $("#create-form")
 
     page.append(`
         <li><input type="text" placeholder="Title..." id="create-title-input"></li><br>
@@ -136,7 +142,10 @@ function displayPage() {
         <h4 id="add-image-title">Add image: </h4>
         <span id="add-image-span">
             <input type="file" accept="image/*" placeholder="select image" id="input-image" class="input-image"><br>
-            <br><ul class="image-ul"></ul>
+            <br><ul class="image-ul">
+            
+            
+            </ul>
         </span>
     `)
 

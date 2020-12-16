@@ -93,27 +93,20 @@ function addAttachment() {
 
 
 
-    addImage.addEventListener("click", () => {
+    addImage.addEventListener("change", () => {
         let ull = $(".image-ul");
         ull.empty();
-        addImage.addEventListener("mouseout", async function () {
-            let img = await uploadImage();
-            ull.append(`
-                <strong id="delete-image">X</strong>
-                <img id="edit-note-image" src="${img}">
+        let img = await uploadImage();
+        ull.append(`
+            <strong id="delete-image">X</strong>
+            <img id="edit-note-image" src="${img}">
             `)
-            return;
-        }, {once: true})
-    }
-    );
+    });
 
-    addFile.addEventListener("click", () => {
-        addFile.addEventListener("mouseout", async function () {
-            await addFileToNote();
+    // addFile.addEventListener("click", () => {
+    //     await addFileToNote();
 
-        }, {once: true})
-    }
-    );
+    // });
 }
 
 
