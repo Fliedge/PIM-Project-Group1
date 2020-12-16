@@ -1,30 +1,306 @@
 let singleNote = {};
 let notes = [];
-
+let createNoteImg = ""
 
 
 getAllNotesDb();
 
+
+// Home page
+
+async function getAllNotesDb() {
+
+    let result = await fetch("rest/notes");
+    notes = await result.json();
+
+    displayList()
+}
+
+function displayList() {
+
+    let list = $(".home-page-all-list");
+    let i = 0;
+    list.empty();
+
+    for (note of notes) {
+
+        let internList = $("#home-list");
+
+        if (i == 0) {
+            list.append(`
+            <h1 class="title"> My Notes </h1>
+            <div class="home-wrapper">
+                <span class="note-click">
+                    <section class="home-note-columns">
+                        <div class="home-column">
+                            <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
+                            <h2 class="home-note-title">${note.title}</h2><br>
+                            <p class="home-note-description">${note.description}</p>
+                        </div>
+                    </section>
+                </span>
+                <div id="home-list">
+                </div>
+            </div>
+            `)
+            i++;
+        }
+        else {
+            internList.append(`
+            <span class="note-click">
+                <section class="home-note-columns">
+                    <div class="home-column">
+                        <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
+                        <h2 class="home-note-title">${note.title}</h2><br>
+                        <p class="home-note-description">${note.description}</p>
+                    </div>
+                </section>
+            </span>
+            `)
+        }
+    }
+    findNoteId();
+
+}
 
 function findNoteId() {
 
     let allNotes = $(".note-click");
 
     for (let i = 0; i < allNotes.length; i++) {
-        $(allNotes[i]).click(function () {
-            getSingleNoteDb(notes[i])
+        $(allNotes[i]).click(async function () {
+            await getSingleNoteDb(notes[i])
+            showSingleNote();
         });
     }
+}
+
+
+// Single note page
+
+async function getSingleNoteDb(note) {
+
+    let result = await fetch("/rest/notes/" + note.id);
+    singleNote = await result.json();
 
 }
 
-// Send note functions
-async function submitNote() {
+function showSingleNote() {
 
+    let list = $(".home-page-all-list");
+    list.empty();
+
+    list.append(`
+    
+    <h1 class="title"> My Notes </h1>
+        <div class="home-wrapper">
+        <div id="home-list">
+            <span class="single-note-click">
+                <section onclick="displayList()" class="single-note-columns">
+                <div class="home-column">
+                    <h6 class="single-note-date">last update: ${singleNote.lastUpdate}</h6>
+                        <button onclick="deleteNoteDb()" class="delete-button"><strong>X</strong></button>
+
+                        <h2 class="single-note-title">${singleNote.title}</h2><br>
+                        <p class="single-note-description">${singleNote.description}</p>
+
+                    </div>
+                </section>
+            </span><br>
+            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
+        </div>
+        </div>
+    `);
+
+    if (singleNote.imageUrl != null) {
+        let box = $(".home-column");
+        box.append(`
+        <br><img id="view-note-image" src="${singleNote.imageUrl}">
+        `);
+    }
+    if (singleNote.fileUrl != null) {
+        let box = $(".home-column");
+        box.append(`
+        <br><a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
+        `);
+    }
+}
+
+async function deleteNoteDb() {
+
+    let result = await fetch("/rest/notes/" + singleNote.id, {
+        method: "DELETE",
+        BODY: JSON.stringify()
+    });
+
+    location.reload();
+}
+
+
+// Edit note page
+
+function showSingleNoteForEdit() {
+
+
+    let list = $(".home-page-all-list");
+    list.empty();
+
+    list.append(`
+    <form action="submit">
+            
+    <h2>Edit Note</h2>
+   
+        <li><input type="text" id="edit-title-input" value=><br></li><br>
+        <li><textarea id="edit-description-input"></textarea></li><br>        
+
+        <button onclick="editNote()" id="save-button">Save</button>
+
+        <h4 id="edit-file-title">Add file: </h4>
+        <span id="edit-file-span"><input type="file" accept=".pdf" placeholder="select file" class="input-file"></span>
+        <ul id="file-ul"></ul><br>
+
+        <h4 id="edit-image-title">Add image: </h4>
+        <span id="edit-image-span"><input type="file" accept="image/*" placeholder="select image" class="input-image"></span><br><br>
+        <ul id="image-ul"></ul>
+
+    </form>
+    `);
+
+
+    addEditInputs();
+    editAttachment();
+    deleteAttachment();
+}
+
+function addEditInputs() {
+
+    let fileList = $("#file-ul");
+
+    if (singleNote.fileUrl != null) {
+        fileList.append(`
+        <li>
+            <strong id="delete-file">X</strong>
+            ${singleNote.fileUrl}
+        </li>
+        `);
+    }
+
+    let imageList = $("#image-ul");
+
+    if (singleNote.imageUrl != null) {
+        imageList.append(`
+        <strong id="delete-image">X</strong>
+        <img id="edit-note-image" src="${singleNote.imageUrl}">
+        `);
+    }
+
+    $("#edit-title-input").val(singleNote.title);
+    $("#edit-description-input").val(singleNote.description,);
+}
+
+function editAttachment() {
+
+    let addImage = document.querySelector("#edit-image-span");
+    let addFile = document.querySelector("#edit-file-span");
+
+
+    addImage.addEventListener("change", async () => {
+        await addImageToNote();
+        showSingleNoteForEdit();
+    })
+
+    addFile.addEventListener("change", async () => {
+        await addFileToNote();
+        showSingleNoteForEdit();
+    })
+}
+
+function deleteAttachment() {
+    $("#delete-image").click(async function () {
+        let updateNote = {
+            id: singleNote.id,
+            title: singleNote.title,
+            description: singleNote.description,
+            imageUrl: null,
+            fileUrl: singleNote.fileUrl
+        }
+        await updateNoteDb(updateNote)
+        await getSingleNoteDb(singleNote);
+        showSingleNoteForEdit();
+    });
+
+    $("#delete-file").click(async function () {
+        let updateNote = {
+            id: singleNote.id,
+            title: singleNote.title,
+            description: singleNote.description,
+            imageUrl: singleNote.imageUrl,
+            fileUrl: null
+        }
+        await updateNoteDb(updateNote)
+        await getSingleNoteDb(singleNote);
+        showSingleNoteForEdit();
+    });
+
+
+}
+
+async function addImageToNote() {
+
+    let img = await uploadImage();
+    singleNote.imageUrl = img;
+
+}
+
+async function addFileToNote() {
+
+    let file = await uploadFile();
+    singleNote.fileUrl = file;
+
+}
+
+async function editNote() {
+
+    let editFile = await uploadFile();
+    let editImage = await uploadImage();;
+
+
+    if (editImage == null) {
+        editImage = singleNote.imageUrl
+    }
+    if (editFile == null) {
+        editFile = singleNote.fileUrl
+    }
+
+    let noteToEdit = {
+
+        id: singleNote.id,
+        title: $("#edit-title-input").val(),
+        description: $("#edit-description-input").val(),
+        imageUrl: editImage,
+        fileUrl: editFile
+    }
+    await updateNoteDb(noteToEdit)
+    location.reload()
+
+}
+
+async function updateNoteDb(note) {
+
+    let result = await fetch("/rest/notes/id", {
+        method: "PUT",
+        body: JSON.stringify(note)
+    });
+
+}
+
+
+// Create note page
+
+async function submitNote() {
 
     let imageUrl = await uploadImage();
     let fileUrl = await uploadFile();
-
 
     let titleInput = $("#create-title-input").val();
     let descriptionInput = $("#create-description-input").val();
@@ -48,36 +324,9 @@ async function submitNote() {
 
 }
 
-async function uploadImage() {
-
-
-    let images = document.querySelector("#input-image").files;
-
-    if (images.length > 0) {
-        let formData = new FormData();
-
-        for (let image of images) {
-            formData.append("images", image, image.name);
-
-        }
-
-        let uploadResult = await fetch('/api/images-upload', {
-            method: 'POST',
-            body: formData
-        });
-
-        imageUrl = await uploadResult.text();
-        return imageUrl;
-    }
-    // else {
-    //     return imageUrl = "";
-    // }
-}
-
 async function uploadFile() {
 
-
-    let files = document.querySelector("#input-file").files;
+    let files = document.querySelector(".input-file").files;
 
     if (files.length > 0) {
 
@@ -93,213 +342,38 @@ async function uploadFile() {
         });
 
         fileUrl = await uploadResult.text();
+
         return fileUrl;
     }
-    // else {
-    //     return fileUrl = "";
-    // }
+    else {
+        return null;
+    }
 }
 
-// Edit note
+async function uploadImage() {
 
-async function editNote() {
+    let images = document.querySelector(".input-image").files;
 
-    let editImage = await uploadImage();;
-    let editFile = await uploadFile();
+    if (images.length > 0) {
+        let formData = new FormData();
 
-    if (editImage == "") {
-        editImage = singleNote.imageUrl
-    }
-    if (editFile == "") {
-        editFile = singleNote.fileUrl
-    }
+        for (let image of images) {
+            formData.append("images", image, image.name);
 
-    let noteToEdit = {
-
-        id: singleNote.id,
-        title: $("#edit-title-input").val(),
-        description: $("#edit-description-input").val(),
-        imageUrl: editImage,
-        fileUrl: editFile
-    }
-    updateNoteDb(noteToEdit)
-}
-
-// Display functions
-
-function displayList() {
-
-    let list = $(".home-page-all-list");
-    let i = 0;
-    list.empty();
-
-    for (note of notes) {
-
-        let internList = $("#home-list");
-
-        if (i == 0) {
-            list.append(`
-            <h1 class="title"> My Notes </h1>
-            <div class="home-wrapper">
-            <div id="home-list">
-                <span class="note-click">
-                    <section class="home-note-columns">
-                        <div class="home-column">
-                        <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
-                        <h2 class="home-note-title">${note.title}</h2><br>
-                            <p class="home-note-description">${note.description}</p>
-                        </div>
-                    </section>
-                </span>
-            </div>
-            </div>
-            `)
-            i++;
         }
-        else {
-            internList.append(`
-            <span class="note-click">
-                <section class="home-note-columns">
-                    <div class="home-column">
-                        <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
-                        <h2 class="home-note-title">${note.title}</h2><br>
-                        <p class="home-note-description">${note.description}</p>
-                    </div>
-                </section>
-            </span>
-            `)
-        }
+
+        let uploadResult = await fetch('/api/images-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        imageUrl = await uploadResult.text();
+
+        return imageUrl;
     }
-    findNoteId();
-
-}
-
-function showSingleNote() {
-
-    let list = $(".home-page-all-list");
-    list.empty()
-
-    list.append(`
-    
-    <h1 class="title"> My Notes </h1>
-        
-        <div class="home-wrapper">
-        <div id="home-list">
-            <span class="single-note-click">
-                <section onclick="displayList()" class="single-note-columns">
-                    <div class="home-column">
-                    <h6 class="single-note-date">last update: ${singleNote.lastUpdate}</h6>
-                        <button onclick="deleteNoteDb()" class="delete-button"><strong>X</strong></button>
-
-                        <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <p class="single-note-description">${singleNote.description}</p>
-
-                    </div>
-                </section>
-            </span><br>
-            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
-           
-        </div>
-        </div>
-    `)
-
-    // <button onclick="addImageToNote()" id="edit-image-button">Add images</button>
-    // <button onclick="addFileToNote()" id="edit-files-button">Add files</button>
-
-    if (singleNote.imageUrl != "") {
-        let box = $(".home-column")
-        box.append(`
-        <br><img src="${singleNote.imageUrl}" alt="">
-        `)
+    else {
+        return null;
     }
-    if (singleNote.fileUrl != "") {
-        let box = $(".home-column")
-        box.append(`
-        <br><a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
-        `)
-    }
-}
-
-function showSingleNoteForEdit() {
-
-    let list = $(".home-page-all-list");
-    list.empty();
-
-    list.append(`
-    <form action="submit">
-            
-    <h2>Edit Note</h2>
-   
-        <li><input type="text" id="edit-title-input" value=><br></li><br>
-        <li><textarea id="edit-description-input"></textarea></li><br>
-        <button class="delete-image-button"><strong>X</strong></button>
-        <ul id="image-li"></ul>
-
-        <button onclick="editNote()" id="save-button">Save</button>
-  
-
-        <input type="file" accept="image/*" placeholder="select image" id="input-image">
-        <input type="file" accept=".pdf" placeholder="select file" id="input-file">
-   
-    </form>
-    `)
-
-    // <button onclick="addImageToNote()" id="add-image-button">Add images</button>
-    // <button onclick="addFileToNote()" id="add-files-button">Add files</button>
-    let imageList = $("image-li")
-
-    imageList.append(`
-    <img src="${singleNote.imageUrl}">
-        `)
-
-    $("#edit-title-input").val(singleNote.title);
-    $("#edit-description-input").val(singleNote.description,);
-
-    $(".delete-image-button").click(function () {
-        let updateNote = {
-            id: singleNote.id,
-            title: singleNote.title,
-            description: singleNote.description,
-            imageUrl: "",
-            fileUrl: singleNote.fileUrl
-        }
-        updateNoteDb(updateNote)
-        event.preventDefault();
-    });
-
-
-
-}
-
-
-// DB functions
-
-async function getAllNotesDb() {
-
-    let result = await fetch("rest/notes");
-    notes = await result.json();
-
-    displayList()
-}
-
-async function getSingleNoteDb(note) {
-
-    let result = await fetch("/rest/notes/" + note.id);
-    singleNote = await result.json();
-
-    showSingleNote();
-
-}
-
-async function deleteNoteDb() {
-
-    let result = await fetch("/rest/notes/" + singleNote.id, {
-        method: "DELETE",
-        BODY: JSON.stringify()
-    });
-
-    location.reload();
-
 }
 
 async function createNoteDb(note) {
@@ -311,26 +385,32 @@ async function createNoteDb(note) {
 
 }
 
-async function updateNoteDb(note) {
+function addAttachment() {
 
-    let result = await fetch("/rest/notes/id", {
-        method: "PUT",
-        body: JSON.stringify(note)
-    });
+    let addImage = document.querySelector("#add-image-span");
+    let addFile = document.querySelector("#add-file-span");
+    let imgul = $("#add-image-ul")
+    imgul.empty();
 
-    location.reload()
+    addImage.addEventListener("click", () => {
+        addImage.addEventListener("mouseout", async function () {
+            let img = await uploadImage();
+            imgul.append(`
+                    <img src="${img}">
+                `)
+        })
+    }
+
+    );
+    addFile.addEventListener("click", () => {
+        addFile.addEventListener("mouseout", async function () {
+            await addFileToNote();
+
+        })
+    }
+    );
 }
 
-async function addImage(formData) {
-
-    let uploadResult = await fetch('/api/file-upload', {
-        method: 'POST',
-        body: formData
-    });
-
-    imageUrl = await uploadResult.text();
-
-}
 
 // Sorting functions
 
@@ -372,7 +452,3 @@ async function getAllNotesDbSortedByDateDesc() {
     displayList();
 
 }
-
-
-
-
