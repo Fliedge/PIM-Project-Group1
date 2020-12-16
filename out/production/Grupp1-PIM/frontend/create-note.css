@@ -37,6 +37,18 @@
         
 }
 
+#create-note-image{
+    height: auto;
+    width: auto;
+    max-width: 250px;
+    max-height: 250px;
+}
+.image-ul{
+    position: relative;
+    left: 94px;
+}
+
+
 /* Buttons */
 
 #add-button{

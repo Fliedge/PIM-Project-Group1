@@ -1,5 +1,7 @@
 let singleNote = {};
 let notes = [];
+let createNoteImg = ""
+
 
 getAllNotesDb();
 
@@ -139,6 +141,7 @@ async function deleteNoteDb() {
 
 function showSingleNoteForEdit() {
 
+
     let list = $(".home-page-all-list");
     list.empty();
 
@@ -162,6 +165,7 @@ function showSingleNoteForEdit() {
 
     </form>
     `);
+
 
     addEditInputs();
     editAttachment();
@@ -199,21 +203,16 @@ function editAttachment() {
     let addImage = document.querySelector("#edit-image-span");
     let addFile = document.querySelector("#edit-file-span");
 
-    addImage.addEventListener("click", () => {
-        addImage.addEventListener("mouseout", async function () {
-            await addImageToNote();
-            showSingleNoteForEdit();
-        })
-    }
 
-    );
-    addFile.addEventListener("click", () => {
-        addFile.addEventListener("mouseout", async function () {
-            await addFileToNote();
-            showSingleNoteForEdit();
-        })
-    }
-    );
+    addImage.addEventListener("change", async () => {
+        await addImageToNote();
+        showSingleNoteForEdit();
+    })
+
+    addFile.addEventListener("change", async () => {
+        await addFileToNote();
+        showSingleNoteForEdit();
+    })
 }
 
 function deleteAttachment() {
@@ -257,7 +256,6 @@ async function addFileToNote() {
 
     let file = await uploadFile();
     singleNote.fileUrl = file;
-    showSingleNoteForEdit();
 
 }
 
@@ -387,42 +385,32 @@ async function createNoteDb(note) {
 
 }
 
-// function addAttachment() {
+function addAttachment() {
 
-//     let addImage = document.querySelector("#add-image-span");
-//     let addFile = document.querySelector("#add-file-span");
-//     let imgul = $("#add-image-ul")
-//     imgul.empty();
+    let addImage = document.querySelector("#add-image-span");
+    let addFile = document.querySelector("#add-file-span");
+    let imgul = $("#add-image-ul")
+    imgul.empty();
 
-//     addImage.addEventListener("click", () => {
-//         addImage.addEventListener("mouseout", async function () {
-//             let img = await uploadImage();
-//             imgul.append(`
-//                     <img src="${img}">
-//                 `)
-//         })
-//     }
+    addImage.addEventListener("click", () => {
+        addImage.addEventListener("mouseout", async function () {
+            let img = await uploadImage();
+            imgul.append(`
+                    <img src="${img}">
+                `)
+        })
+    }
 
-//     );
-//     addFile.addEventListener("click", () => {
-//         addFile.addEventListener("mouseout", async function () {
-//             await addFileToNote();
+    );
+    addFile.addEventListener("click", () => {
+        addFile.addEventListener("mouseout", async function () {
+            await addFileToNote();
 
-//         })
-//     }
-//     );
-// }
+        })
+    }
+    );
+}
 
-// async function addImage(formData) {
-
-//     let uploadResult = await fetch('/api/file-upload', {
-//         method: 'POST',
-//         body: formData
-//     });
-
-//     imageUrl = await uploadResult.text();
-
-// }
 
 // Sorting functions
 
