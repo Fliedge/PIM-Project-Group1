@@ -28,6 +28,21 @@
 }
 
 
+#view-note-image{
+    height: auto;
+    width: auto;
+    max-width: 250px;
+    max-height: 250px;
+}
+
+/* #view-note-image:hover{
+    
+    height: auto;
+    width: auto;
+    max-width: 400px;
+    max-height: 400px;
+} */
+
 
 /* Buttons */
 

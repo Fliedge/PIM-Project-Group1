@@ -24,16 +24,23 @@
     <h2 class="title">Create Note</h2>
     <form action="submit">
 
-
         <li><input type="text" placeholder="Title..." id="create-title-input"></li><br>
         <li><textarea id="create-description-input" placeholder="Description..."></textarea></li><br>
 
         <button onclick="submitNote()" id="add-button">Create</button>
-        <h4 id="add-image-title">Add files: </h4>
-        <button onclick="addFileToNote(event)" id="add-files-button">Add files</button>
-        <input type="file" accept="image/*" placeholder="select image" id="input-image">
-        <input type="file" accept=".pdf" placeholder="select file" id="input-file">
 
+        <h4 id="add-file-title">Add file: </h4>
+        <span id="add-file-span">
+            <input type="file" accept=".pdf" placeholder="select file" id="input-file" class="input-file">
+            <ul id="add-file-ul"></ul><br>
+        </span>
+
+        <h4 id="add-image-title">Add image: </h4>
+        <span id="add-image-span">
+            <input type="file" accept="image/*" placeholder="select image" id="input-image" class="input-image">
+            <ul id="add-image-ul"></ul>
+        </span>
+   
     </form>
 
 </body>
