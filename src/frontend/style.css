@@ -43,7 +43,7 @@ body {
 /* Nav-bar */
 
 nav{
-    position: absolute;
+    position: fixed;
     display: inline-block;
     background-color: #bbbbbb44;
     padding-bottom: 100%;

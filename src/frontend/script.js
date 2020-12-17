@@ -120,7 +120,7 @@ function showSingleNote() {
     if (singleNote.fileUrl != null) {
         let box = $(".home-column");
         box.append(`
-        <br><a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
+        <br><a href="${singleNote.fileUrl}" download>${singleNote.fileUrl}</a>
         `);
     }
 }
@@ -149,13 +149,13 @@ function showSingleNoteForEdit() {
             
     <h2>Edit Note</h2>
    
-        <li><input type="text" id="edit-title-input" value=><br></li><br>
+        <li><input type="text" id="edit-title-input"><br></li><br>
         <li><textarea id="edit-description-input"></textarea></li><br>        
 
         <button onclick="editNote()" id="save-button">Save</button>
 
         <h4 id="edit-file-title">Add file: </h4>
-        <span id="edit-file-span"><input type="file" accept=".pdf" placeholder="select file" class="input-file"></span>
+        <span id="edit-file-span"><input type="file" accept=".pdf, .txt" placeholder="select file" class="input-file"></span>
         <ul id="file-ul"></ul><br>
 
         <h4 id="edit-image-title">Add image: </h4>
@@ -170,20 +170,6 @@ function showSingleNoteForEdit() {
     addEditInputs();
     editAttachment();
 }
-
-// function tempDelete() {
-//     let updateNote = {
-//         id: singleNote.id,
-//         title: singleNote.title,
-//         description: singleNote.description,
-//         imageUrl: null,
-//         fileUrl: singleNote.fileUrl
-//     }
-//     // await updateNoteDb(updateNote)
-//     $("#image-ul").empty();
-//     console.log("Hello")
-
-// }
 
 function addEditInputs() {
 
@@ -247,8 +233,9 @@ function deleteFileFromNote() {
         fileUrl: null
     }
     $("#file-ul").empty();
-    // updateNoteDb(updateNote)
+    updateNoteDb(updateNote)
     $(".input-file").val("");
+    singleNote.fileUrl = null;
 
 
 }
@@ -264,7 +251,8 @@ function deleteImageFromNote() {
         fileUrl: singleNote.fileUrl
     }
     $("#image-ul").empty();
-    // updateNoteDb(updateNote)
+    updateNoteDb(updateNote);
+    singleNote.imageUrl = null;
 
 }
 
@@ -288,10 +276,10 @@ async function editNote() {
     let editImage = await uploadImage();
 
 
-    if (editImage == null) {
+    if (editImage == "") {
         editImage = singleNote.imageUrl
     }
-    if (editFile == null) {
+    if (editFile == "") {
         editFile = singleNote.fileUrl
     }
 
@@ -369,7 +357,7 @@ async function uploadFile() {
         return fileUrl;
     }
     else {
-        return null;
+        return "";
     }
 }
 
@@ -395,7 +383,7 @@ async function uploadImage() {
         return imageUrl;
     }
     else {
-        return null;
+        return "";
     }
 }
 
