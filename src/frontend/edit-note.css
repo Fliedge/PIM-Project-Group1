@@ -110,7 +110,7 @@
     background-color: white;
 }
 
-#delete-image{
+.edit-delete-image{
     cursor: pointer;
     color: rgb(165, 0, 0);
     background-color: white;
@@ -119,11 +119,11 @@
     font-size: larger;
 }
 
-#delete-image:hover{
+.edit-delete-image:hover{
     color: rgb(255, 0, 0);
 }
 
-#delete-file{
+#edit-delete-file{
     display: inline-block;
     cursor: pointer;
     color: rgb(165, 0, 0);

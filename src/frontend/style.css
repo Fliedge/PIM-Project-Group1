@@ -41,7 +41,7 @@ body {
     padding-top: 6px;
 }
 
-#searchbar{ 
+.search-bar{ 
     border: 1.3px solid;
     padding: 4px;
     border-radius: 4px 4px;

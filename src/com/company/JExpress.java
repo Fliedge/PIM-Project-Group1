@@ -55,9 +55,10 @@ public class JExpress {
             response.json(notes);
         });
 
-        app.get("/rest/search/:searchString", (request, response) -> {
+        app.get("/rest/notes/search/:searchString", (request, response) -> {
             String searchString ="";
             searchString = request.getParam("searchString");
+            System.out.println(searchString);
             List<Note> notes = db.searchDatabaseByTitle(searchString);
 
             response.json(notes);

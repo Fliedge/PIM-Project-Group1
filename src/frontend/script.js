@@ -1,9 +1,8 @@
 let singleNote = {};
 let notes = [];
 
-
 getAllNotesDb();
-
+searchNotes();
 
 // Home page
 
@@ -59,34 +58,6 @@ function displayList() {
         }
     }
     findNoteId();
-
-    /*$("#search-bar").on("keydown", "input", function(e) {
-        if (e.keyCode === 13) {
-            searchNotes();
-        }
-      });*/
-
-}
-
-function searchNotes(){
-    let searchString = $("#search-bar").val();
-
-    if (searchString.length > 0){
-        searchTitleInDb(searchString);
-    }
-    else{
-        alert("Search string needs to be added")
-    }
-    $("#search-bar").val("");
-}
-
-
-async function searchTitleInDb(searchString){
-    let searchResult = await fetch("rest/notes/search/" + $(searchString));
-    notes = await searchResult.json();
-    console.log(notes);
-    displayList();
-
 }
 
 function findNoteId() {
@@ -100,6 +71,36 @@ function findNoteId() {
         });
     }
 }
+
+function searchNotes() {
+
+    let searchBar = document.querySelector(".search-bar")
+
+    searchBar.addEventListener("keypress", (e) => {
+
+        if (e.keyCode === 13) {
+
+            let searchString = $(".search-bar").val();
+
+            if (searchString.length > 0) {
+                searchTitleInDb(searchString);
+            }
+            else {
+                alert("Search string needs to be added")
+            }
+            $(".search-bar").val("");
+        }
+    });
+}
+
+async function searchTitleInDb(searchString) {
+
+    let searchResult = await fetch("/rest/notes/search/" + searchString);
+    notes = await searchResult.json();
+    displayList();
+}
+
+
 
 
 // Single note page
@@ -125,12 +126,11 @@ function showSingleNote() {
                 <section onclick="displayList()" class="single-note-columns">
                 <div class="home-column">
                     <h6 class="single-note-date">last update: ${singleNote.lastUpdate}</h6>
-                        <button onclick="deleteNoteDb()" class="delete-button"><strong>X</strong></button>
+                    <button onclick="deleteNoteDb()" class="delete-button"><strong>X</strong></button>
 
-                        <h2 class="single-note-title">${singleNote.title}</h2><br>
-                        <p class="single-note-description">${singleNote.description}</p>
-
-                    </div>
+                    <h2 class="single-note-title">${singleNote.title}</h2><br>
+                    <p class="single-note-description">${singleNote.description}</p>
+                </div>
                 </section>
             </span><br>
             <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
@@ -158,8 +158,8 @@ async function deleteNoteDb() {
         method: "DELETE",
         BODY: JSON.stringify()
     });
-
     location.reload();
+
 }
 
 
@@ -192,8 +192,6 @@ function showSingleNoteForEdit() {
     </form>
     `);
 
-
-
     addEditInputs();
     editAttachment();
 }
@@ -201,23 +199,23 @@ function showSingleNoteForEdit() {
 function addEditInputs() {
 
     let fileList = $("#file-ul");
+    let imageList = $("#image-ul");
 
     if (singleNote.fileUrl != null) {
         fileList.append(`
-        <strong onclick="deleteFileFromNote()" id="delete-file">X</strong>
-        <p>${singleNote.fileUrl}</p>
+        <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
+        ${singleNote.fileUrl}
         `);
     }
-
-    let imageList = $("#image-ul");
 
     if (singleNote.imageUrl != null) {
         imageList.append(`
         <li>
-        <strong onclick="deleteImageFromNote()" class="edit-delete-image">X</strong>
-        <img id="edit-note-image" src="${singleNote.imageUrl}">
+            <strong onclick="deleteImageFromNote()" class="edit-delete-image">X</strong>
+            <img id="edit-note-image" src="${singleNote.imageUrl}">
         </li>
         `);
+
     }
 
     $("#edit-title-input").val(singleNote.title);
@@ -226,28 +224,30 @@ function addEditInputs() {
 
 function editAttachment() {
 
+
     let addImage = document.querySelector("#edit-image-span");
     let addFile = document.querySelector("#edit-file-span");
 
-
-    addImage.addEventListener("change", async () => {
-        await addImageToNote();
-        $("#image-ul").empty();
-        $("#image-ul").append(`
-            <strong onclick="deleteImageFromNote()" class="edit-delete-image">X</strong>
-            <img id="edit-note-image" src="${singleNote.imageUrl}">
-        `)
-    })
-
     addFile.addEventListener("change", async () => {
-        await addFileToNote();
+        singleNote.fileUrl = await uploadFile();
         let fileList = $("#file-ul");
         fileList.empty();
         fileList.append(`
-            <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
-            ${singleNote.fileUrl}
+                <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
+                ${singleNote.fileUrl}
+            `)
+    });
+
+    addImage.addEventListener("change", async () => {
+        singleNote.imageUrl = await uploadImage();
+        let list = $("#image-ul")
+        list.empty();
+        list.append(`
+            <strong onclick="deleteImageFromNote()" class="edit-delete-image">X</strong>
+            <img id="edit-note-image" src="${singleNote.imageUrl}">
         `)
     });
+
 }
 
 function deleteFileFromNote() {
@@ -259,8 +259,10 @@ function deleteFileFromNote() {
         imageUrl: singleNote.imageUrl,
         fileUrl: null
     }
-    $("#file-ul").empty();
+
+
     updateNoteDb(updateNote)
+    $("#file-ul").empty();
     $(".input-file").val("");
     singleNote.fileUrl = null;
 
@@ -269,7 +271,6 @@ function deleteFileFromNote() {
 
 function deleteImageFromNote() {
 
-
     let updateNote = {
         id: singleNote.id,
         title: singleNote.title,
@@ -277,23 +278,11 @@ function deleteImageFromNote() {
         imageUrl: null,
         fileUrl: singleNote.fileUrl
     }
-    $("#image-ul").empty();
+
     updateNoteDb(updateNote);
+    $("#image-ul").empty();
+    $(".input-image").val("");
     singleNote.imageUrl = null;
-
-}
-
-async function addImageToNote() {
-
-    let img = await uploadImage();
-    singleNote.imageUrl = img;
-
-}
-
-async function addFileToNote() {
-
-    let file = await uploadFile();
-    singleNote.fileUrl = file;
 
 }
 
