@@ -2,25 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cc4be9a-8604-4fb0-8dc0-a1b42193ae74" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/images/nedladdning (1).jfif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/images/nedladdning (2).jfif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend/images/nedladdning (1).jfif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend/images/nedladdning (2).jfif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/frontend/script2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-note.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-note.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/create-notes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/edit-note.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/edit-note.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script2.js" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/script2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/view-note.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Grupp1-PIM/frontend/view-note.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pim-grupp1.db" beforeDir="false" afterPath="$PROJECT_DIR$/pim-grupp1.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/create-note.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/create-note.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/create-notes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/create-notes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/edit-note.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/edit-note.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/frontend/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/frontend/view-note.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/frontend/view-note.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +28,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Övningar/Kombination av allt/Övning - utökad Todoey/Todoey - version 2" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -75,25 +65,25 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1608109008355">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1608123463507">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608109008355" />
-    <state width="1237" height="157" key="GridCell.Tab.0.bottom" timestamp="1608109095976">
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608123463507" />
+    <state width="1237" height="157" key="GridCell.Tab.0.bottom" timestamp="1608123470242">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608109095976" />
-    <state width="1237" height="157" key="GridCell.Tab.0.center" timestamp="1608109095976">
+    <state width="1237" height="157" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608123470242" />
+    <state width="1237" height="157" key="GridCell.Tab.0.center" timestamp="1608123470242">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608109095976" />
-    <state width="1237" height="157" key="GridCell.Tab.0.left" timestamp="1608109095975">
+    <state width="1237" height="157" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608123470242" />
+    <state width="1237" height="157" key="GridCell.Tab.0.left" timestamp="1608123470242">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608109095975" />
-    <state width="1237" height="157" key="GridCell.Tab.0.right" timestamp="1608109095976">
+    <state width="1237" height="157" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608123470242" />
+    <state width="1237" height="157" key="GridCell.Tab.0.right" timestamp="1608123470242">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1237" height="157" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608109095976" />
+    <state width="1237" height="157" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608123470242" />
   </component>
 </project>
