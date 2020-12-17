@@ -56,9 +56,8 @@ public class JExpress {
         });
 
         app.get("/rest/notes/search/:searchString", (request, response) -> {
-            String searchString ="";
-            searchString = request.getParam("searchString");
-            System.out.println(searchString);
+
+            String searchString = request.getParam("searchString");
             List<Note> notes = db.searchDatabaseByTitle(searchString);
 
             response.json(notes);

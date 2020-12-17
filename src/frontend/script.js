@@ -60,6 +60,25 @@ function displayList() {
     findNoteId();
 }
 
+function searchNotes(){
+    let searchString = $("#search-bar").val();
+    if (searchString.length > 0){
+        searchTitleInDb(searchString);
+    }
+    else{
+        alert("Search string needs to be added")
+    }
+    $("#search-bar").val("");
+}
+
+
+async function searchTitleInDb(searchString){
+    let searchResult = await fetch("/rest/notes/search/"+searchString);
+    notes = await searchResult.json();
+    displayList();
+
+}
+
 function findNoteId() {
 
     let allNotes = $(".note-click");
