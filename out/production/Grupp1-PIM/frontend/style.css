@@ -142,3 +142,11 @@ h2{
 textarea{
     width: 500px;
 }
+
+
+
+/* Test */
+header img{
+    height: 100%;
+    margin-left: 40%;
+}
