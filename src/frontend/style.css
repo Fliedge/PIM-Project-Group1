@@ -22,6 +22,7 @@ h4{
 body { 
     font-family: 'Roboto', sans-serif;
     color: #666;
+    overflow-x: hidden;
 }
 
 .list-dates{
@@ -39,6 +40,15 @@ body {
     left: 397px;
     padding-top: 6px;
 }
+
+#searchbar{ 
+    border: 1.3px solid;
+    padding: 4px;
+    border-radius: 4px 4px;
+    position: absolute;
+    left: 630px;
+    top: 127px;
+  } 
 
 /* Nav-bar */
 

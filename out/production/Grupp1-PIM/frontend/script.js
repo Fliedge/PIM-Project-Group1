@@ -1,6 +1,5 @@
 let singleNote = {};
 let notes = [];
-let createNoteImg = ""
 
 
 getAllNotesDb();
@@ -121,7 +120,7 @@ function showSingleNote() {
     if (singleNote.fileUrl != null) {
         let box = $(".home-column");
         box.append(`
-        <br><a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
+        <br><a href="${singleNote.fileUrl}" download>${singleNote.fileUrl}</a>
         `);
     }
 }
@@ -150,13 +149,13 @@ function showSingleNoteForEdit() {
             
     <h2>Edit Note</h2>
    
-        <li><input type="text" id="edit-title-input" value=><br></li><br>
+        <li><input type="text" id="edit-title-input"><br></li><br>
         <li><textarea id="edit-description-input"></textarea></li><br>        
 
         <button onclick="editNote()" id="save-button">Save</button>
 
         <h4 id="edit-file-title">Add file: </h4>
-        <span id="edit-file-span"><input type="file" accept=".pdf" placeholder="select file" class="input-file"></span>
+        <span id="edit-file-span"><input type="file" accept=".pdf, .txt" placeholder="select file" class="input-file"></span>
         <ul id="file-ul"></ul><br>
 
         <h4 id="edit-image-title">Add image: </h4>
@@ -167,26 +166,9 @@ function showSingleNoteForEdit() {
     `);
 
 
+
     addEditInputs();
     editAttachment();
-
-    
-    $("#edit-delete-image").click(async function () {
-        console.log("Hello")
-        let updateNote = {
-            id: singleNote.id,
-            title: singleNote.title,
-            description: singleNote.description,
-            imageUrl: null,
-            fileUrl: singleNote.fileUrl
-        }
-        console.log("Hello")
-        // await updateNoteDb(updateNote)
-        $("#image-ul").empty();
-
-    });
-
-    // deleteAttachment();
 }
 
 function addEditInputs() {
@@ -195,7 +177,7 @@ function addEditInputs() {
 
     if (singleNote.fileUrl != null) {
         fileList.append(`
-        <strong id="delete-file">X</strong>
+        <strong onclick="deleteFileFromNote()" id="delete-file">X</strong>
         <p>${singleNote.fileUrl}</p>
         `);
     }
@@ -204,8 +186,10 @@ function addEditInputs() {
 
     if (singleNote.imageUrl != null) {
         imageList.append(`
-        <strong id="delete-image">X</strong>
+        <li>
+        <strong onclick="deleteImageFromNote()" class="edit-delete-image">X</strong>
         <img id="edit-note-image" src="${singleNote.imageUrl}">
+        </li>
         `);
     }
 
@@ -221,10 +205,9 @@ function editAttachment() {
 
     addImage.addEventListener("change", async () => {
         await addImageToNote();
-        let imageList = $("#image-ul");
-        imageList.empty();
-        imageList.append(`
-            <strong id="edit-delete-image">X</strong>
+        $("#image-ul").empty();
+        $("#image-ul").append(`
+            <strong onclick="deleteImageFromNote()" class="edit-delete-image">X</strong>
             <img id="edit-note-image" src="${singleNote.imageUrl}">
         `)
     })
@@ -234,43 +217,43 @@ function editAttachment() {
         let fileList = $("#file-ul");
         fileList.empty();
         fileList.append(`
-            <strong id="edit-delete-file">X</strong>
+            <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
             ${singleNote.fileUrl}
         `)
     });
 }
 
+function deleteFileFromNote() {
 
-function deleteAttachment() {
+    let updateNote = {
+        id: singleNote.id,
+        title: singleNote.title,
+        description: singleNote.description,
+        imageUrl: singleNote.imageUrl,
+        fileUrl: null
+    }
+    $("#file-ul").empty();
+    updateNoteDb(updateNote)
+    $(".input-file").val("");
+    singleNote.fileUrl = null;
 
 
+}
 
-    // $("#delete-image").click(async function () {
-    //     let updateNote = {
-    //         id: singleNote.id,
-    //         title: singleNote.title,
-    //         description: singleNote.description,
-    //         imageUrl: null,
-    //         fileUrl: singleNote.fileUrl
-    //     }
-    //     console.log("Hello")
-    //     await updateNoteDb(updateNote)
-    //     $("#image-ul").empty();
+function deleteImageFromNote() {
 
-    // });
 
-    $("#delete-file").click(async function () {
-        let updateNote = {
-            id: singleNote.id,
-            title: singleNote.title,
-            description: singleNote.description,
-            imageUrl: singleNote.imageUrl,
-            fileUrl: null
-        }
-        $("#file-ul").empty();
-        console.log("Hello")
-        await updateNoteDb(updateNote)
-    });
+    let updateNote = {
+        id: singleNote.id,
+        title: singleNote.title,
+        description: singleNote.description,
+        imageUrl: null,
+        fileUrl: singleNote.fileUrl
+    }
+    $("#image-ul").empty();
+    updateNoteDb(updateNote);
+    singleNote.imageUrl = null;
+
 }
 
 async function addImageToNote() {
@@ -293,10 +276,10 @@ async function editNote() {
     let editImage = await uploadImage();
 
 
-    if (editImage == null) {
+    if (editImage == "") {
         editImage = singleNote.imageUrl
     }
-    if (editFile == null) {
+    if (editFile == "") {
         editFile = singleNote.fileUrl
     }
 
@@ -374,7 +357,7 @@ async function uploadFile() {
         return fileUrl;
     }
     else {
-        return null;
+        return "";
     }
 }
 
@@ -400,7 +383,7 @@ async function uploadImage() {
         return imageUrl;
     }
     else {
-        return null;
+        return "";
     }
 }
 

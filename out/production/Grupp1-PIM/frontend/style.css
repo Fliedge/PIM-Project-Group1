@@ -40,10 +40,16 @@ body {
     padding-top: 6px;
 }
 
+#searchbar{ 
+    margin-left: 15%; 
+    padding:10px; 
+    border-radius: 5px; 
+  } 
+
 /* Nav-bar */
 
 nav{
-    position: absolute;
+    position: fixed;
     display: inline-block;
     background-color: #bbbbbb44;
     padding-bottom: 100%;
@@ -143,10 +149,6 @@ textarea{
     width: 500px;
 }
 
-
-
-/* Test */
 header img{
     height: 100%;
-    margin-left: 40%;
 }
