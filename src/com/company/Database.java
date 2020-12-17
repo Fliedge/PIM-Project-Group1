@@ -158,10 +158,10 @@ public class Database {
         }
     }
 
-   /* // Search in database om title-field
+   // Search in database om title-field
     public List<Note> searchDatabaseByTitle (String searchString){
         List<Note> notes = null;
-        String query = "SELECT * FROM notes WHERE title LIKE ('%'||?||'%');";
+        String query = "SELECT * FROM notes WHERE LOWER(title) LIKE ('%'||?||'%') ORDER BY TITLE;";
         try {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1,searchString);
@@ -175,7 +175,7 @@ public class Database {
             e.printStackTrace();
         }
         return notes;
-    }*/
+    }
 
     public String changeTitleToCapitalLetterFirst (String input) {
         char[] temp = input.toCharArray();

@@ -55,15 +55,21 @@ public class JExpress {
             response.json(notes);
         });
 
+        app.get("/rest/search/:searchString", (request, response) -> {
+            String searchString ="";
+            searchString = request.getParam("searchString");
+            List<Note> notes = db.searchDatabaseByTitle(searchString);
+
+            response.json(notes);
+        });
+
         app.post("/rest/notes", (request, response) -> {
             Note note = (Note) request.getBody(Note.class);
-
-
-
 
             db.createNote(note);
             response.send();
         });
+
 
         app.post("/api/images-upload",(request, response) -> {
             String imageUrl = null;
