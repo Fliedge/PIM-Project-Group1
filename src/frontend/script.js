@@ -70,7 +70,6 @@ function displayList() {
 
 function searchNotes(){
     let searchString = $("#search-bar").val();
-
     if (searchString.length > 0){
         searchTitleInDb(searchString);
     }
@@ -82,9 +81,8 @@ function searchNotes(){
 
 
 async function searchTitleInDb(searchString){
-    let searchResult = await fetch("rest/notes/search/" + $(searchString));
+    let searchResult = await fetch("/rest/notes/search/"+searchString);
     notes = await searchResult.json();
-    console.log(notes);
     displayList();
 
 }
