@@ -60,6 +60,12 @@ function displayList() {
     }
     findNoteId();
 
+    $("#search-bar").on("keydown", "input", function(e) {
+        if (e.keyCode === 13) {
+            searchNotes();
+        }
+      });
+
 }
 
 function findNoteId() {

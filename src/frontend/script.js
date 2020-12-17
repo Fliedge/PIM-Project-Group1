@@ -60,11 +60,32 @@ function displayList() {
     }
     findNoteId();
 
-    $("#search-bar").on("keydown", "input", function(e) {
+    /*$("#search-bar").on("keydown", "input", function(e) {
         if (e.keyCode === 13) {
             searchNotes();
         }
-      });
+      });*/
+
+}
+
+function searchNotes(){
+    let searchString = $("#search-bar").val();
+
+    if (searchString.length > 0){
+        searchTitleInDb(searchString);
+    }
+    else{
+        alert("Search string needs to be added")
+    }
+    $("#search-bar").val("");
+}
+
+
+async function searchTitleInDb(searchString){
+    let searchResult = await fetch("rest/notes/search/" + $(searchString));
+    notes = await searchResult.json();
+    console.log(notes);
+    displayList();
 
 }
 
