@@ -142,3 +142,7 @@ h2{
 textarea{
     width: 500px;
 }
+
+header img{
+    height: 100%;
+}

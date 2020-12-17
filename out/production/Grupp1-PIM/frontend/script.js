@@ -169,7 +169,24 @@ function showSingleNoteForEdit() {
 
     addEditInputs();
     editAttachment();
-    deleteAttachment();
+
+    
+    $("#edit-delete-image").click(async function () {
+        console.log("Hello")
+        let updateNote = {
+            id: singleNote.id,
+            title: singleNote.title,
+            description: singleNote.description,
+            imageUrl: null,
+            fileUrl: singleNote.fileUrl
+        }
+        console.log("Hello")
+        // await updateNoteDb(updateNote)
+        $("#image-ul").empty();
+
+    });
+
+    // deleteAttachment();
 }
 
 function addEditInputs() {
@@ -178,10 +195,8 @@ function addEditInputs() {
 
     if (singleNote.fileUrl != null) {
         fileList.append(`
-        <li>
-            <strong id="delete-file">X</strong>
-            ${singleNote.fileUrl}
-        </li>
+        <strong id="delete-file">X</strong>
+        <p>${singleNote.fileUrl}</p>
         `);
     }
 
@@ -206,28 +221,43 @@ function editAttachment() {
 
     addImage.addEventListener("change", async () => {
         await addImageToNote();
-        showSingleNoteForEdit();
+        let imageList = $("#image-ul");
+        imageList.empty();
+        imageList.append(`
+            <strong id="edit-delete-image">X</strong>
+            <img id="edit-note-image" src="${singleNote.imageUrl}">
+        `)
     })
 
     addFile.addEventListener("change", async () => {
         await addFileToNote();
-        showSingleNoteForEdit();
-    })
+        let fileList = $("#file-ul");
+        fileList.empty();
+        fileList.append(`
+            <strong id="edit-delete-file">X</strong>
+            ${singleNote.fileUrl}
+        `)
+    });
 }
 
+
 function deleteAttachment() {
-    $("#delete-image").click(async function () {
-        let updateNote = {
-            id: singleNote.id,
-            title: singleNote.title,
-            description: singleNote.description,
-            imageUrl: null,
-            fileUrl: singleNote.fileUrl
-        }
-        await updateNoteDb(updateNote)
-        await getSingleNoteDb(singleNote);
-        showSingleNoteForEdit();
-    });
+
+
+
+    // $("#delete-image").click(async function () {
+    //     let updateNote = {
+    //         id: singleNote.id,
+    //         title: singleNote.title,
+    //         description: singleNote.description,
+    //         imageUrl: null,
+    //         fileUrl: singleNote.fileUrl
+    //     }
+    //     console.log("Hello")
+    //     await updateNoteDb(updateNote)
+    //     $("#image-ul").empty();
+
+    // });
 
     $("#delete-file").click(async function () {
         let updateNote = {
@@ -237,12 +267,10 @@ function deleteAttachment() {
             imageUrl: singleNote.imageUrl,
             fileUrl: null
         }
+        $("#file-ul").empty();
+        console.log("Hello")
         await updateNoteDb(updateNote)
-        await getSingleNoteDb(singleNote);
-        showSingleNoteForEdit();
     });
-
-
 }
 
 async function addImageToNote() {
@@ -262,7 +290,7 @@ async function addFileToNote() {
 async function editNote() {
 
     let editFile = await uploadFile();
-    let editImage = await uploadImage();;
+    let editImage = await uploadImage();
 
 
     if (editImage == null) {
@@ -277,8 +305,8 @@ async function editNote() {
         id: singleNote.id,
         title: $("#edit-title-input").val(),
         description: $("#edit-description-input").val(),
-        imageUrl: editImage,
-        fileUrl: editFile
+        imageUrl: singleNote.imageUrl,
+        fileUrl: singleNote.fileUrl
     }
     await updateNoteDb(noteToEdit)
     location.reload()
