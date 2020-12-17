@@ -40,6 +40,12 @@ body {
     padding-top: 6px;
 }
 
+#searchbar{ 
+    margin-left: 15%; 
+    padding:10px; 
+    border-radius: 5px; 
+  } 
+
 /* Nav-bar */
 
 nav{

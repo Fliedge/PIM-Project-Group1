@@ -119,8 +119,8 @@ public class JExpress {
         }
         ;
 
-        app.listen(1000);
-        System.out.println("Server started on port 1000");
+        app.listen(2000);
+        System.out.println("Server started on port 2000");
 
     }
 }

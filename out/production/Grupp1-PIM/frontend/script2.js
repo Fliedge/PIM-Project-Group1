@@ -135,7 +135,7 @@ function displayPage() {
 
         <h4 id="add-file-title">Add file: </h4>
         <span id="add-file-span">
-            <input type="file" accept=".pdf" placeholder="select file" id="input-file" class="input-file">
+            <input type="file" accept=".pdf, .txt" placeholder="select file" id="input-file" class="input-file">
             <div id="add-file-ul"></div><br>
         </span>
 

@@ -120,7 +120,7 @@ function showSingleNote() {
     if (singleNote.fileUrl != null) {
         let box = $(".home-column");
         box.append(`
-        <br><a href="${singleNote.fileUrl}">${singleNote.fileUrl}</a>
+        <br><a href="${singleNote.fileUrl}" download>${singleNote.fileUrl}</a>
         `);
     }
 }
@@ -155,7 +155,7 @@ function showSingleNoteForEdit() {
         <button onclick="editNote()" id="save-button">Save</button>
 
         <h4 id="edit-file-title">Add file: </h4>
-        <span id="edit-file-span"><input type="file" accept=".pdf, .txt"   placeholder="select file" class="input-file"></span>
+        <span id="edit-file-span"><input type="file" accept=".pdf, .txt" placeholder="select file" class="input-file"></span>
         <ul id="file-ul"></ul><br>
 
         <h4 id="edit-image-title">Add image: </h4>
