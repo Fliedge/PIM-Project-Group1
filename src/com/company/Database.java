@@ -16,7 +16,7 @@ public class Database {
     public Database(){
 
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:pim-grupp1.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:pim-group1.db");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
