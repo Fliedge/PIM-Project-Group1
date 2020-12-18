@@ -246,7 +246,6 @@ function addAttachment() {
 
     addImage.addEventListener("change", async () => {
         singleNote.imageUrl = await uploadImage();
-        console.log(singleNote.imageUrl)
         if (singleNote.imageUrl != "") {
             let imagelist = $("#image-ul")
             imagelist.empty();

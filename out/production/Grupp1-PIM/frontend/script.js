@@ -86,7 +86,7 @@ function searchNotes() {
                 searchTitleInDb(searchString);
             }
             else {
-                alert("Search string needs to be added")
+                getAllNotesDb();
             }
             $(".search-bar").val("");
         }
@@ -99,8 +99,6 @@ async function searchTitleInDb(searchString) {
     notes = await searchResult.json();
     displayList();
 }
-
-
 
 
 // Single note page
@@ -133,7 +131,10 @@ function showSingleNote() {
                 </div>
                 </section>
             </span><br>
-            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
+            <h4>Added file:</h4>
+            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button><br>
+            <div id="show-file">
+            </div>
         </div>
         </div>
     `);
@@ -145,9 +146,9 @@ function showSingleNote() {
         `);
     }
     if (singleNote.fileUrl != null) {
-        let box = $(".home-column");
+        let box = $("#show-file");
         box.append(`
-        <br><a href="${singleNote.fileUrl}" download>${singleNote.fileUrl}</a>
+        <a id="view-note-file" href="${singleNote.fileUrl}" download>${singleNote.fileUrl}</a>
         `);
     }
 }
@@ -206,6 +207,7 @@ function addToInputField() {
         <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
         ${singleNote.fileUrl}
         `);
+
     }
 
     if (singleNote.imageUrl != null) {
@@ -229,24 +231,86 @@ function addAttachment() {
 
     addFile.addEventListener("change", async () => {
         singleNote.fileUrl = await uploadFile();
-        let fileList = $("#file-ul");
-        fileList.empty();
-        fileList.append(`
+        if (singleNote.fileUrl != "") {
+            let fileList = $("#file-ul");
+            fileList.empty();
+            fileList.append(`
             <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
             ${singleNote.fileUrl}
         `)
+        }
+        else {
+            $("#file-ul").empty();
+        }
     });
 
     addImage.addEventListener("change", async () => {
         singleNote.imageUrl = await uploadImage();
-        let list = $("#image-ul")
-        list.empty();
-        list.append(`
+        if (singleNote.imageUrl != "") {
+            let imagelist = $("#image-ul")
+            imagelist.empty();
+            imagelist.append(`
             <strong onclick="deleteImageFromNote()" class="edit-delete-image">X</strong>
             <img id="edit-note-image" src="${singleNote.imageUrl}">
         `)
+        }
+        else {
+            $("#image-ul").empty();
+        }
     });
 
+}
+
+async function uploadFile() {
+
+    let files = document.querySelector(".input-file").files;
+
+    if (files.length > 0) {
+
+        let formData = new FormData();
+
+        for (let file of files) {
+            formData.append("files", file, file.name);
+
+        }
+        let uploadResult = await fetch('/api/file-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        fileUrl = await uploadResult.text();
+
+        return fileUrl;
+    }
+    else {
+        return "";
+    }
+}
+
+async function uploadImage() {
+
+    let images = document.querySelector(".input-image").files;
+
+    if (images.length > 0) {
+        let formData = new FormData();
+
+        for (let image of images) {
+            formData.append("images", image, image.name);
+
+        }
+
+        let uploadResult = await fetch('/api/images-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        imageUrl = await uploadResult.text();
+
+        return imageUrl;
+    }
+    else {
+        return "";
+    }
 }
 
 function deleteFileFromNote() {
@@ -319,99 +383,6 @@ async function updateNoteDb(note) {
     });
 
 }
-
-
-// Create note page
-
-async function submitNote() {
-
-    let imageUrl = await uploadImage();
-    let fileUrl = await uploadFile();
-
-    let titleInput = $("#create-title-input").val();
-    let descriptionInput = $("#create-description-input").val();
-
-    if (titleInput.length >= 0) {
-
-        note = {
-            title: titleInput,
-            description: descriptionInput,
-            imageUrl: imageUrl,
-            fileUrl: fileUrl
-        };
-        createNoteDb(note);
-    }
-    else {
-        alert("Title needs to be added");
-    }
-
-    $("#create-title-input").val("");
-    $("#create-description-input").val("");
-
-}
-
-async function uploadFile() {
-
-    let files = document.querySelector(".input-file").files;
-
-    if (files.length > 0) {
-
-        let formData = new FormData();
-
-        for (let file of files) {
-            formData.append("files", file, file.name);
-
-        }
-        let uploadResult = await fetch('/api/file-upload', {
-            method: 'POST',
-            body: formData
-        });
-
-        fileUrl = await uploadResult.text();
-
-        return fileUrl;
-    }
-    else {
-        return "";
-    }
-}
-
-async function uploadImage() {
-
-    let images = document.querySelector(".input-image").files;
-
-    if (images.length > 0) {
-        let formData = new FormData();
-
-        for (let image of images) {
-            formData.append("images", image, image.name);
-
-        }
-
-        let uploadResult = await fetch('/api/images-upload', {
-            method: 'POST',
-            body: formData
-        });
-
-        imageUrl = await uploadResult.text();
-
-        return imageUrl;
-    }
-    else {
-        return "";
-    }
-}
-
-async function createNoteDb(note) {
-
-    let result = await fetch("/rest/notes", {
-        method: "POST",
-        body: JSON.stringify(note)
-    });
-
-}
-
-
 
 
 // Sorting functions

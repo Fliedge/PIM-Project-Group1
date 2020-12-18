@@ -43,11 +43,15 @@
     max-width: 250px;
     max-height: 250px;
 }
-.image-ul{
+.add-image-ul{
     position: relative;
     left: 94px;
 }
 
+.add-file-ul{
+    position: relative;
+    left: 94px;
+}
 
 /* Buttons */
 
@@ -87,5 +91,18 @@
     position: relative;
     left: -1px;
     top: -36px;
+}
+
+.delete-create-image{
+    cursor: pointer;
+    color: rgb(165, 0, 0);
+    background-color: white;
+    position: absolute;
+    border: none;
+    font-size: larger;
+}
+
+.delete-create-image:hover{
+    color: rgb(255, 0, 0);
 }
 
