@@ -56,7 +56,7 @@ nav{
     position: absolute;
     display: inline-block;
     background-color: #bbbbbb44;
-    padding-bottom: 100%;
+    padding-bottom: 200%;
 }
 
 #nav-ul{
@@ -80,6 +80,10 @@ a:hover{
 }
 a.menu_links {
     cursor: pointer;
+}
+
+.view-note-file{
+    
 }
 
 

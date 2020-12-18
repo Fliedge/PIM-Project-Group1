@@ -23,10 +23,6 @@ async function submitNote() {
     }
 
     location.reload();
-
-    // $("#create-title-input").val("");
-    // $("#create-description-input").val("");
-
 }
 
 async function uploadFile() {
@@ -95,31 +91,41 @@ function addAttachment() {
     let addImage = document.querySelector("#add-image-span");
     let addFile = document.querySelector("#add-file-span");
 
-
-
-    addImage.addEventListener("change", async () => {
-        let ull = $(".image-ul");
-        ull.empty();
-        img = await uploadImage();
-        ull.append(`
-        
-            <strong onclick="deleteImageFromNote()" id="delete-create-image">X</strong>
-            <img id="edit-note-image" src="${img}">
-            `)
+    addFile.addEventListener("change", async () => {
+        let fileList = $(".add-file-ul");
+        fileList.empty();
+        fileUrl = await uploadFile();
+        fileList.append(`
+            <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
+            ${fileUrl}
+        `)
     });
 
-    // addFile.addEventListener("click", () => {
-    //     await addFileToNote();
-
-    // });
+    addImage.addEventListener("change", async () => {
+        let imageList = $(".add-image-ul");
+        imageList.empty();
+        img = await uploadImage();
+        imageList.append(`
+            <strong onclick="deleteImageFromNote()" class="delete-create-image">X</strong>
+            <img id="edit-note-image" src="${img}">
+        `)
+    });
 }
 
 function deleteImageFromNote() {
 
-    let ull = $(".image-ul");
-    ull.empty();
+    $(".add-image-ul").empty();
+    $(".input-image").val("")
 
-    // $("#input-image").val("");
+
+}
+
+function deleteFileFromNote() {
+    
+    $(".add-file-ul").empty();
+    $(".input-file").val("");
+   
+
 }
 
 
@@ -136,15 +142,13 @@ function displayPage() {
         <h4 id="add-file-title">Add file: </h4>
         <span id="add-file-span">
             <input type="file" accept=".pdf, .txt" placeholder="select file" id="input-file" class="input-file">
-            <div id="add-file-ul"></div><br>
+            <ul class="add-file-ul"></ul><br>
         </span>
 
         <h4 id="add-image-title">Add image: </h4>
         <span id="add-image-span">
             <input type="file" accept="image/*" placeholder="select image" id="input-image" class="input-image"><br>
-            <br><ul class="image-ul">
-            
-            
+            <br><ul class="add-image-ul">
             </ul>
         </span>
     `)
@@ -154,60 +158,3 @@ function displayPage() {
 }
 
 displayPage();
-
-
-
-
-
-
-async function uploadFile() {
-
-    let files = document.querySelector(".input-file").files;
-
-    if (files.length > 0) {
-
-        let formData = new FormData();
-
-        for (let file of files) {
-            formData.append("files", file, file.name);
-
-        }
-        let uploadResult = await fetch('/api/file-upload', {
-            method: 'POST',
-            body: formData
-        });
-
-        fileUrl = await uploadResult.text();
-
-        return fileUrl;
-    }
-    else {
-        return "";
-    }
-}
-
-async function uploadImage() {
-
-    let images = document.querySelector(".input-image").files;
-
-    if (images.length > 0) {
-        let formData = new FormData();
-
-        for (let image of images) {
-            formData.append("images", image, image.name);
-
-        }
-
-        let uploadResult = await fetch('/api/images-upload', {
-            method: 'POST',
-            body: formData
-        });
-
-        imageUrl = await uploadResult.text();
-
-        return imageUrl;
-    }
-    else {
-        return "";
-    }
-}

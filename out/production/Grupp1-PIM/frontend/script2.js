@@ -13,7 +13,7 @@ async function submitNote() {
         note = {
             title: titleInput,
             description: descriptionInput,
-            imageUrl: imageUrl,
+            imageUrl: img,
             fileUrl: fileUrl
         };
         createNoteDb(note);
@@ -22,8 +22,10 @@ async function submitNote() {
         alert("Title needs to be added");
     }
 
-    $("#create-title-input").val("");
-    $("#create-description-input").val("");
+    location.reload();
+
+    // $("#create-title-input").val("");
+    // $("#create-description-input").val("");
 
 }
 
@@ -75,7 +77,7 @@ async function uploadImage() {
         return imageUrl;
     }
     else {
-        return null;
+        return "";
     }
 }
 
@@ -152,3 +154,60 @@ function displayPage() {
 }
 
 displayPage();
+
+
+
+
+
+
+async function uploadFile() {
+
+    let files = document.querySelector(".input-file").files;
+
+    if (files.length > 0) {
+
+        let formData = new FormData();
+
+        for (let file of files) {
+            formData.append("files", file, file.name);
+
+        }
+        let uploadResult = await fetch('/api/file-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        fileUrl = await uploadResult.text();
+
+        return fileUrl;
+    }
+    else {
+        return "";
+    }
+}
+
+async function uploadImage() {
+
+    let images = document.querySelector(".input-image").files;
+
+    if (images.length > 0) {
+        let formData = new FormData();
+
+        for (let image of images) {
+            formData.append("images", image, image.name);
+
+        }
+
+        let uploadResult = await fetch('/api/images-upload', {
+            method: 'POST',
+            body: formData
+        });
+
+        imageUrl = await uploadResult.text();
+
+        return imageUrl;
+    }
+    else {
+        return "";
+    }
+}

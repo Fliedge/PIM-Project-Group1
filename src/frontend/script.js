@@ -86,7 +86,7 @@ function searchNotes() {
                 searchTitleInDb(searchString);
             }
             else {
-                alert("Search string needs to be added")
+                getAllNotesDb();
             }
             $(".search-bar").val("");
         }
@@ -99,8 +99,6 @@ async function searchTitleInDb(searchString) {
     notes = await searchResult.json();
     displayList();
 }
-
-
 
 
 // Single note page
@@ -133,7 +131,10 @@ function showSingleNote() {
                 </div>
                 </section>
             </span><br>
-            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button>
+            <h4>Added file:</h4>
+            <button onclick="showSingleNoteForEdit()" id="edit-button">Edit</button><br>
+            <div id="show-file">
+            </div>
         </div>
         </div>
     `);
@@ -145,9 +146,9 @@ function showSingleNote() {
         `);
     }
     if (singleNote.fileUrl != null) {
-        let box = $(".home-column");
+        let box = $("#show-file");
         box.append(`
-        <br><a href="${singleNote.fileUrl}" download>${singleNote.fileUrl}</a>
+        <a id="view-note-file" href="${singleNote.fileUrl}" download>${singleNote.fileUrl}</a>
         `);
     }
 }

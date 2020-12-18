@@ -35,6 +35,10 @@
     max-height: 250px;
 }
 
+#show-file{
+    display: inline-block   ;
+}
+
 /* #view-note-image:hover{
     
     height: auto;
