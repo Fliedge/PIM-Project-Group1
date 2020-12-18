@@ -26,7 +26,7 @@ function displayList() {
         let internList = $("#home-list");
 
         if (note.imageUrl != null || note.fileUrl != null) {
-            fileInd = "/images/Gem mindre.png"
+            fileInd = "/design/Gem mindre.png"
         }    
 
         if (i == 0) {
@@ -65,10 +65,6 @@ function displayList() {
             </span>
             `)
         }
-    }
-
-    if (note.imageUrl != null) {
-        fileInd = "/images/Gem mindre.png"
     }
 
     findNoteId();

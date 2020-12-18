@@ -22,7 +22,12 @@ function displayList() {
 
     for (note of notes) {
 
+        let fileInd = "";
         let internList = $("#home-list");
+
+        if (note.imageUrl != null || note.fileUrl != null) {
+            fileInd = "/design/Gem mindre.png"
+        }    
 
         if (i == 0) {
             list.append(`
@@ -32,6 +37,8 @@ function displayList() {
                     <section class="home-note-columns">
                         <div class="home-column">
                             <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
+                            <img id="file-indication"src="${fileInd}" alt="">
+
                             <h2 class="home-note-title">${note.title}</h2><br>
                             <p class="home-note-description">${note.description}</p>
                         </div>
@@ -49,6 +56,8 @@ function displayList() {
                 <section class="home-note-columns">
                     <div class="home-column">
                         <h6 class="list-dates">last update: ${note.lastUpdate}</h6>
+                        <img id="file-indication"src="${fileInd}" alt="">
+
                         <h2 class="home-note-title">${note.title}</h2><br>
                         <p class="home-note-description">${note.description}</p>
                     </div>
@@ -57,6 +66,7 @@ function displayList() {
             `)
         }
     }
+
     findNoteId();
 }
 
