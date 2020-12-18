@@ -1,4 +1,4 @@
-let img = "";
+let imageUrl = "";
 
 async function submitNote() {
 
@@ -13,7 +13,7 @@ async function submitNote() {
         note = {
             title: titleInput,
             description: descriptionInput,
-            imageUrl: img,
+            imageUrl: imageUrl,
             fileUrl: fileUrl
         };
         createNoteDb(note);
@@ -47,7 +47,7 @@ async function uploadFile() {
         return fileUrl;
     }
     else {
-        return null;
+        return "";
     }
 }
 
@@ -92,23 +92,37 @@ function addAttachment() {
     let addFile = document.querySelector("#add-file-span");
 
     addFile.addEventListener("change", async () => {
+
         let fileList = $(".add-file-ul");
-        fileList.empty();
         fileUrl = await uploadFile();
-        fileList.append(`
-            <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
-            ${fileUrl}
-        `)
+
+        if (fileUrl != "") {
+            fileList.empty();
+            fileList.append(`
+                <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
+                ${fileUrl}
+            `)
+        }
+        else {
+            fileList.empty();
+        }
     });
 
     addImage.addEventListener("change", async () => {
+
         let imageList = $(".add-image-ul");
-        imageList.empty();
-        img = await uploadImage();
-        imageList.append(`
+        imageUrl = await uploadImage();
+
+        if (imageUrl != "") {
+            imageList.empty();
+            imageList.append(`
             <strong onclick="deleteImageFromNote()" class="delete-create-image">X</strong>
-            <img id="edit-note-image" src="${img}">
+            <img id="edit-note-image" src="${imageUrl}">
         `)
+        }
+        else {
+            imageList.empty();
+        }
     });
 }
 
@@ -121,13 +135,12 @@ function deleteImageFromNote() {
 }
 
 function deleteFileFromNote() {
-    
+
     $(".add-file-ul").empty();
     $(".input-file").val("");
-   
+
 
 }
-
 
 function displayPage() {
 
