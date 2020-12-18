@@ -117,9 +117,7 @@ function deleteImageFromNote() {
     let ull = $(".image-ul");
     ull.empty();
 
-    $("#input-image").val("");
-
-
+    // $("#input-image").val("");
 }
 
 

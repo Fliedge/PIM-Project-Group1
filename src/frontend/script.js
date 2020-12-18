@@ -60,25 +60,6 @@ function displayList() {
     findNoteId();
 }
 
-function searchNotes(){
-    let searchString = $("#search-bar").val();
-    if (searchString.length > 0){
-        searchTitleInDb(searchString);
-    }
-    else{
-        alert("Search string needs to be added")
-    }
-    $("#search-bar").val("");
-}
-
-
-async function searchTitleInDb(searchString){
-    let searchResult = await fetch("/rest/notes/search/"+searchString);
-    notes = await searchResult.json();
-    displayList();
-
-}
-
 function findNoteId() {
 
     let allNotes = $(".note-click");
@@ -211,11 +192,11 @@ function showSingleNoteForEdit() {
     </form>
     `);
 
-    addEditInputs();
-    editAttachment();
+    addToInputField();
+    addAttachment();
 }
 
-function addEditInputs() {
+function addToInputField() {
 
     let fileList = $("#file-ul");
     let imageList = $("#image-ul");
@@ -241,8 +222,7 @@ function addEditInputs() {
     $("#edit-description-input").val(singleNote.description,);
 }
 
-function editAttachment() {
-
+function addAttachment() {
 
     let addImage = document.querySelector("#edit-image-span");
     let addFile = document.querySelector("#edit-file-span");
@@ -252,9 +232,9 @@ function editAttachment() {
         let fileList = $("#file-ul");
         fileList.empty();
         fileList.append(`
-                <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
-                ${singleNote.fileUrl}
-            `)
+            <strong onclick="deleteFileFromNote()" id="edit-delete-file">X</strong>
+            ${singleNote.fileUrl}
+        `)
     });
 
     addImage.addEventListener("change", async () => {
@@ -431,31 +411,7 @@ async function createNoteDb(note) {
 
 }
 
-function addAttachment() {
 
-    let addImage = document.querySelector("#add-image-span");
-    let addFile = document.querySelector("#add-file-span");
-    let imgul = $("#add-image-ul")
-    imgul.empty();
-
-    addImage.addEventListener("click", () => {
-        addImage.addEventListener("mouseout", async function () {
-            let img = await uploadImage();
-            imgul.append(`
-                    <img src="${img}">
-                `)
-        })
-    }
-
-    );
-    addFile.addEventListener("click", () => {
-        addFile.addEventListener("mouseout", async function () {
-            await addFileToNote();
-
-        })
-    }
-    );
-}
 
 
 // Sorting functions
