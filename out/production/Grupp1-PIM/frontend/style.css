@@ -113,9 +113,7 @@ a.menu_links {
 .home-note-columns{
     flex: 1;
     border: 1px solid gray;
-    /* margin: 2px; */
     padding: 10px;
-    
     display: flex;
     flex-flow: row wrap;
     margin: 5px 0;

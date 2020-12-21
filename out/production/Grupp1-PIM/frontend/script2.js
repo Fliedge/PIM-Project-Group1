@@ -8,6 +8,13 @@ async function submitNote() {
     let titleInput = $("#create-title-input").val();
     let descriptionInput = $("#create-description-input").val();
 
+    if (imageUrl == ""){
+        imageUrl = null;
+    }
+    if (fileUrl == ""){
+        fileUrl = null;
+    }
+
     if (titleInput.length >= 0) {
 
         note = {
@@ -22,7 +29,11 @@ async function submitNote() {
         alert("Title needs to be added");
     }
 
+    $("#create-title-input").val("");
+    $("#create-description-input").val("");
     location.reload();
+
+
 }
 
 async function uploadFile() {
@@ -83,6 +94,8 @@ async function createNoteDb(note) {
         method: "POST",
         body: JSON.stringify(note)
     });
+
+
 
 }
 
