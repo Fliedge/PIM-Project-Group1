@@ -127,7 +127,7 @@ function showSingleNote() {
 
     list.append(`
     
-    <h1 class="title"> My Notes </h1>
+    <h1 class="title"> My Note </h1>
         <div class="home-wrapper">
         <div id="home-list">
             <span class="single-note-click">
@@ -193,7 +193,7 @@ function showSingleNoteForEdit() {
         <button onclick="editNote()" id="save-button">Save</button>
 
         <h4 id="edit-file-title">Add file: </h4>
-        <span id="edit-file-span"><input type="file" accept=".pdf, .txt" placeholder="select file" class="input-file"></span>
+        <span id="edit-file-span"><input type="file" accept=".pdf, .txt, .zip" placeholder="select file" class="input-file"></span>
         <ul id="file-ul"></ul><br>
 
         <h4 id="edit-image-title">Add image: </h4>
