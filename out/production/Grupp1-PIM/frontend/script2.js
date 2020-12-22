@@ -15,7 +15,7 @@ async function submitNote() {
         fileUrl = null;
     }
 
-    if (titleInput.length >= 0) {
+    if (titleInput.length > 0) {
 
         note = {
             title: titleInput,
