@@ -5,8 +5,8 @@ async function submitNote() {
     let imageUrl = await uploadImage();
     let fileUrl = await uploadFile();
 
-    let titleInput = $("#create-title-input").val();
-    let descriptionInput = $("#create-description-input").val();
+    let titleInput = validateString($("#create-title-input").val());
+    let descriptionInput = validateString($("#create-description-input").val());
 
     if (imageUrl == ""){
         imageUrl = null;
@@ -34,6 +34,13 @@ async function submitNote() {
     location.reload();
 
 
+}
+
+function validateString (string){
+    if (string.includes("<")){
+        string = string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    return string;
 }
 
 async function uploadFile() {

@@ -364,6 +364,9 @@ async function editNote() {
     let editFile = await uploadFile();
     let editImage = await uploadImage();
 
+    let editTitleInput = validateString($("#edit-title-input").val());
+    let editDescriptionInput = validateString($("#edit-description-input").val());
+
 
     if (editImage == "") {
         editImage = singleNote.imageUrl
@@ -371,18 +374,25 @@ async function editNote() {
     if (editFile == "") {
         editFile = singleNote.fileUrl
     }
-
+    
     let noteToEdit = {
 
         id: singleNote.id,
-        title: $("#edit-title-input").val(),
-        description: $("#edit-description-input").val(),
+        title: editTitleInput,
+        description: editDescriptionInput ,
         imageUrl: singleNote.imageUrl,
         fileUrl: singleNote.fileUrl
     }
     await updateNoteDb(noteToEdit)
     location.reload()
 
+}
+
+function validateString (string){
+    if (string.includes("<")){
+        string = string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    return string;
 }
 
 async function updateNoteDb(note) {
